@@ -131,6 +131,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="console_list.h" />
     <ClInclude Include="course_selection_system.h" />
   </ItemGroup>
   <ItemGroup>

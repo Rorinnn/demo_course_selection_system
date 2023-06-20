@@ -26,6 +26,9 @@
     <ClInclude Include="course_selection_system.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="console_list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="admin.txt">
