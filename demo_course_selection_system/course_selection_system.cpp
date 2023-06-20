@@ -50,6 +50,32 @@ void course::Search_course_information()
     course_file.close();
     cout << "查询完毕" << endl;
 }
+bool course::Iscourse_exist(string temp_course_id)
+{
+    //打开文件
+    fstream course_file("course.txt", ios::in);
+    if (!course_file)
+    {
+        cout << "文件打开失败" << endl;
+        exit(1);
+    }
+    //遍历一遍课程信息，如果有相同的课程编号则返回true
+    string course_id;
+    string temp;
+    while (course_file >> course_id)
+    {
+        if (course_id == temp_course_id)
+        {
+            course_file.close();
+            return true;
+            break;
+        }
+        getline(course_file, temp);
+    }
+    course_file.close();
+    return false;
+}
+
 //学生选课信息派生类
 //函数定义
 void stu_course::Get_course_week_time()
@@ -77,8 +103,6 @@ void stu_course::Get_course_week_time()
 }
 bool stu_course::Isconflict()
 {
-    cout << "请输入要选的课程编号:" << endl;
-    cin >> stu_temp_course_id;
     //获得待操作课程星期和节次
     Get_course_week_time();
     //打开文件并判断是否冲突
@@ -186,6 +210,15 @@ void stu_course::Choose_course()
             cout << "文件打开失败" << endl;
             exit(1);
         }
+    }
+    cout << "请输入要选的课程编号:" << endl;
+    cin >> stu_temp_course_id;
+    //判断课程是否存在
+    if (!Iscourse_exist(stu_temp_course_id))
+    {
+        system("cls");
+        cout << "选课失败，该课程不存在" << endl;
+        return;
     }
     //是否冲突，不同结果进行不同操作
     if (!Isconflict())
@@ -467,8 +500,6 @@ void tea_course::Get_course_week_time()
 }
 bool tea_course::Isconflict()
 {
-    cout << "请输入要添加授课的课程编号:" << endl;
-    cin >> tea_temp_course_id;
     //获得待操作课程星期和节次
     Get_course_week_time();
     //打开文件并判断是否冲突
@@ -577,9 +608,20 @@ void tea_course::Add_tea_course()
             exit(1);
         }
     }
+    cout << "请输入要添加授课的课程编号:" << endl;
+    cin >> tea_temp_course_id;
+    //判断课程是否存在
+    if (!Iscourse_exist(tea_temp_course_id))
+    {
+        system("cls");
+        cout << "添加课程失败，该课程不存在" << endl;
+        return;
+    }
     //是否冲突，不同结果进行不同操作
     if (!Isconflict())
     {
+        //判断课程是否已经存在
+
         //不冲突则从course.txt匹配对应课程并写入文件
         //打开course.txt
         fstream course_file("course.txt", ios::in);

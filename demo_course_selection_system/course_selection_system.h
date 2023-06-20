@@ -28,8 +28,11 @@ protected:
 public:
     //构造函数
     course(string course_id, string course_name, string course_grade, string course_college, string course_profession, string course_college_open, string course_type, string course_nature, string course_belong, string course_week, string course_time) :course_id(course_id), course_name(course_name), course_grade(course_grade), course_college(course_college), course_profession(course_profession), course_college_open(course_college_open), course_type(course_type), course_nature(course_nature), course_belong(course_belong), course_week(course_week), course_time(course_time) {};
-    //基础功能:查询课程信息
+    //基础功能:
+    //查询课程信息
     static void Search_course_information();
+    //查询课程是否存在
+    static bool Iscourse_exist(string temp_course_id);
 };
 //学生选课信息派生类
 class stu_course :public course
