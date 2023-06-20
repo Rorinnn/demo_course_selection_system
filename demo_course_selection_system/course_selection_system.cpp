@@ -1,3 +1,7 @@
+#include <windows.h>
+#include <tchar.h>
+#include <iostream>
+#include <fstream>
 #include "course_selection_system.h"
 using namespace std;
 
@@ -159,6 +163,16 @@ string stu_course::Get_course(string course_week, string course_time)
 //功能函数定义
 void stu_course::Choose_course()
 {
+    //判断stu_course文件夹是否已经创建
+    fstream test1("./stu_course/test.txt", ios::out);
+    if (!test1)
+    {
+        CreateDirectory(_T("./stu_course"), NULL);
+    }
+    else {
+        test1.close();
+        remove("./stu_course/test.txt");
+    }
     //打开stu_course文件夹下的以学号为命名的选课情况文件
     fstream stu_course_file("./stu_course/" + stu_account + ".txt", ios::in | ios::out | ios::app);
     if (!stu_course_file)
@@ -201,6 +215,16 @@ void stu_course::Choose_course()
         course_file.close();
         system("cls");
         cout << "选课成功" << endl;
+        //判断course_student_list文件夹是否已经创建
+        fstream test2("./course_student_list/test.txt", ios::out);
+        if (!test2)
+        {
+            CreateDirectory(_T("./course_student_list"), NULL);
+        }
+        else {
+            test2.close();
+            remove("./course_student_list/test.txt");
+        }
         //向course_student_list文件夹下的课程学生名单中写入学号
         //打开文件
         fstream course_student_list_file("./course_student_list/" + stu_temp_course_id + ".txt", ios::out | ios::app);
@@ -220,6 +244,16 @@ void stu_course::Choose_course()
 }
 void stu_course::Drop_course()
 {
+    //判断stu_course文件夹是否已经创建
+    fstream test1("./stu_course/test.txt", ios::out);
+    if (!test1)
+    {
+        CreateDirectory(_T("./stu_course"), NULL);
+    }
+    else {
+        test1.close();
+        remove("./stu_course/test.txt");
+    }
     cout << "请输入要退的课程编号:" << endl;
     cin >> stu_temp_course_id;
     //是否为已选的课程，不同结果进行不同操作
@@ -267,6 +301,16 @@ void stu_course::Drop_course()
     rename(("./stu_course/" + stu_account + "_temp.txt").c_str(), ("./stu_course/" + stu_account + ".txt").c_str());
     system("cls");
     cout << "退课成功" << endl;
+    //判断course_student_list文件夹是否已经创建
+    fstream test2("./course_student_list/test.txt", ios::out);
+    if (!test2)
+    {
+        CreateDirectory(_T("./course_student_list"), NULL);
+    }
+    else {
+        test2.close();
+        remove("./course_student_list/test.txt");
+    }
     //删除course_student_list文件夹下的课程学生名单中的学号
     //打开文件
     fstream course_student_list_file("./course_student_list/" + stu_temp_course_id + ".txt", ios::in);
@@ -509,6 +553,16 @@ string tea_course::Get_course(string course_week, string course_time)
 //功能函数定义
 void tea_course::Add_tea_course()
 {
+    //判断tea_course文件夹是否已经创建
+    fstream test1("./tea_course/test.txt", ios::out);
+    if (!test1)
+    {
+        CreateDirectory(_T("./tea_course"), NULL);
+    }
+    else {
+        test1.close();
+        remove("./tea_course/test.txt");
+    }
     //打开tea_course文件夹下的以学号为命名的选课情况文件
     fstream tea_course_file("./tea_course/" + tea_account + ".txt", ios::in | ios::out | ios::app);
     if (!tea_course_file)
@@ -551,6 +605,16 @@ void tea_course::Add_tea_course()
         course_file.close();
         system("cls");
         cout << "添加课程成功" << endl;
+        //判断course_teacher_list文件夹是否已经创建
+        fstream test2("./course_teacher_list/test.txt", ios::out);
+        if (!test2)
+        {
+            CreateDirectory(_T("./course_teacher_list"), NULL);
+        }
+        else {
+            test2.close();
+            remove("./course_teacher_list/test.txt");
+        }
         //向course_teacher_list文件夹下的课程学生名单中写入工号
         //打开文件
         fstream course_teacher_list_file("./course_teacher_list/" + tea_temp_course_id + ".txt", ios::out | ios::app);
@@ -570,6 +634,16 @@ void tea_course::Add_tea_course()
 }
 void tea_course::Delete_tea_course()
 {
+    //判断tea_course文件夹是否已经创建
+    fstream test1("./tea_course/test.txt", ios::out);
+    if (!test1)
+    {
+        CreateDirectory(_T("./tea_course"), NULL);
+    }
+    else {
+        test1.close();
+        remove("./tea_course/test.txt");
+    }
     cout << "请输入要退的课程编号:" << endl;
     cin >> tea_temp_course_id;
     //是否为存在的课程，不同结果进行不同操作
@@ -617,6 +691,16 @@ void tea_course::Delete_tea_course()
     rename(("./tea_course/" + tea_account + "_temp.txt").c_str(), ("./tea_course/" + tea_account + ".txt").c_str());
     system("cls");
     cout << "退课成功" << endl;
+    //判断course_teacher_list文件夹是否已经创建
+    fstream test2("./course_teacher_list/test.txt", ios::out);
+    if (!test2)
+    {
+        CreateDirectory(_T("./course_teacher_list"), NULL);
+    }
+    else {
+        test2.close();
+        remove("./course_teacher_list/test.txt");
+    }
     //删除course_teacher_list文件夹下的课程学生名单中的工号
     //打开文件
     fstream course_teacher_list_file("./course_teacher_list/" + tea_temp_course_id + ".txt", ios::in);

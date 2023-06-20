@@ -1,10 +1,9 @@
 #ifndef COURSE_SELECTION_SYSTEM
 #define COURSE_SELECTION_SYSTEM
-#include <ctime>
-#include <fstream>
-#include <iostream>
+#ifndef STRING
+#define STRING
 #include <string>
-#include <windows.h>
+#endif
 using namespace std;
 
 //课程信息类

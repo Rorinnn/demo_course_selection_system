@@ -1,3 +1,5 @@
+#include <windows.h>
+#include <iostream>
 #include "course_selection_system.h"
 using namespace std;
 
