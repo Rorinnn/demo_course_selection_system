@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "course_selection_system.h"
+#include "console_list.h"
 using namespace std;
 
 //课程信息类
@@ -211,13 +212,15 @@ void stu_course::Choose_course()
             exit(1);
         }
     }
-    cout << "请输入要选的课程编号:" << endl;
-    cin >> stu_temp_course_id;
+    system("cls");
+    Col(3); cout << "请输入要选的课程编号:" << endl; Col(0);
+    Col(7); cin >> stu_temp_course_id; Col(0);
     //判断课程是否存在
     if (!Iscourse_exist(stu_temp_course_id))
     {
         system("cls");
-        cout << "选课失败，该课程不存在" << endl;
+        Col(3); cout << "选课失败，该课程不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //是否冲突，不同结果进行不同操作
@@ -247,7 +250,8 @@ void stu_course::Choose_course()
         stu_course_file << temp_course_id << temp << endl;
         course_file.close();
         system("cls");
-        cout << "选课成功" << endl;
+        Col(3); cout << "选课成功" << endl; Col(0);
+        Sleep(1000);
         //判断course_student_list文件夹是否已经创建
         fstream test2("./course_student_list/test.txt", ios::out);
         if (!test2)
@@ -272,7 +276,8 @@ void stu_course::Choose_course()
     }
     else {
         system("cls");
-        cout << "选课失败，可能原因为选课重复或时间冲突" << endl;
+        Col(3); cout << "选课失败，可能原因为选课重复或时间冲突" << endl; Col(0);
+        Sleep(1000);
     }
 }
 void stu_course::Drop_course()
@@ -287,13 +292,15 @@ void stu_course::Drop_course()
         test1.close();
         remove("./stu_course/test.txt");
     }
-    cout << "请输入要退的课程编号:" << endl;
-    cin >> stu_temp_course_id;
+    system("cls");
+    Col(3); cout << "请输入要退的课程编号:" << endl; Col(0);
+    Col(7); cin >> stu_temp_course_id; Col(0);
     //是否为已选的课程，不同结果进行不同操作
     if (!Iscourse(stu_temp_course_id))
     {
         system("cls");
-        cout << "退课失败，可能原因为未选该课程" << endl;
+        Col(3); cout << "退课失败，可能原因为未选该课程" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -333,7 +340,8 @@ void stu_course::Drop_course()
     //重命名文件
     rename(("./stu_course/" + stu_account + "_temp.txt").c_str(), ("./stu_course/" + stu_account + ".txt").c_str());
     system("cls");
-    cout << "退课成功" << endl;
+    Col(3); cout << "退课成功" << endl; Col(0);
+    Sleep(1000);
     //判断course_student_list文件夹是否已经创建
     fstream test2("./course_student_list/test.txt", ios::out);
     if (!test2)
@@ -420,7 +428,7 @@ void stu_course::Show_next_course()
     }
     else
     {
-        cout << "今天已经没有课了，睡个好觉吧" << endl;
+        Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
         return;
     }
     switch (local_time.tm_wday)
@@ -450,27 +458,34 @@ void stu_course::Show_next_course()
     //调用函数获得课程名字
     string name = Get_course(week, time);
     //输出下一节课的时间和名称
-    cout << "下一节课为:" << name << endl;
-    cout << "时间为:";
-    if (time == "1和2")
+    system("cls");
+    if (name != "")
     {
-        cout << "8:00-9:40" << endl;
+        Col(3); cout << "下一节课为:" << name << endl; Col(0);
+        Col(3); cout << "时间为:"; Col(0);
+        if (time == "1和2")
+        {
+            Col(3); cout << "8:00-9:40" << endl; Col(0);
+        }
+        else if (time == "3和4")
+        {
+            Col(3); cout << "10:00-11:40" << endl; Col(0);
+        }
+        else if (time == "5和6")
+        {
+            Col(3); cout << "14:00-15:40" << endl; Col(0);
+        }
+        else if (time == "7和8")
+        {
+            Col(3); cout << "16:00-17:40" << endl; Col(0);
+        }
+        else if (time == "9和10和11")
+        {
+            Col(3); cout << "19:00-21:35" << endl; Col(0);
+        }
     }
-    else if (time == "3和4")
-    {
-        cout << "10:00-11:40" << endl;
-    }
-    else if (time == "5和6")
-    {
-        cout << "14:00-15:40" << endl;
-    }
-    else if (time == "7和8")
-    {
-        cout << "16:00-17:40" << endl;
-    }
-    else if (time == "9和10和11")
-    {
-        cout << "19:00-21:35" << endl;
+    else {
+        Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
     }
 }
 //教师授课信息派生类
@@ -608,13 +623,14 @@ void tea_course::Add_tea_course()
             exit(1);
         }
     }
-    cout << "请输入要添加授课的课程编号:" << endl;
-    cin >> tea_temp_course_id;
+    Col(3); cout << "请输入要添加授课的课程编号:" << endl; Col(0);
+    Col(7); cin >> tea_temp_course_id; Col(0);
     //判断课程是否存在
     if (!Iscourse_exist(tea_temp_course_id))
     {
         system("cls");
-        cout << "添加课程失败，该课程不存在" << endl;
+        Col(3); cout << "添加课程失败，该课程不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //是否冲突，不同结果进行不同操作
@@ -646,7 +662,8 @@ void tea_course::Add_tea_course()
         tea_course_file << temp_course_id << temp << endl;
         course_file.close();
         system("cls");
-        cout << "添加课程成功" << endl;
+        Col(3); cout << "添加课程成功" << endl; Col(0);
+        Sleep(1000);
         //判断course_teacher_list文件夹是否已经创建
         fstream test2("./course_teacher_list/test.txt", ios::out);
         if (!test2)
@@ -671,7 +688,8 @@ void tea_course::Add_tea_course()
     }
     else {
         system("cls");
-        cout << "添加课程失败，可能原因为课程重复或时间冲突" << endl;
+        Col(3); cout << "添加课程失败，可能原因为课程重复或时间冲突" << endl; Col(0);
+        Sleep(1000);
     }
 }
 void tea_course::Delete_tea_course()
@@ -686,13 +704,14 @@ void tea_course::Delete_tea_course()
         test1.close();
         remove("./tea_course/test.txt");
     }
-    cout << "请输入要退的课程编号:" << endl;
-    cin >> tea_temp_course_id;
+    Col(3); cout << "请输入要退的课程编号:" << endl; Col(0);
+    Col(7); cin >> tea_temp_course_id; Col(0);
     //是否为存在的课程，不同结果进行不同操作
     if (!Iscourse(tea_temp_course_id))
     {
         system("cls");
-        cout << "退课失败，可能原因为未选该课程" << endl;
+        Col(3); cout << "退课失败，可能原因为未选该课程" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -732,7 +751,8 @@ void tea_course::Delete_tea_course()
     //重命名文件
     rename(("./tea_course/" + tea_account + "_temp.txt").c_str(), ("./tea_course/" + tea_account + ".txt").c_str());
     system("cls");
-    cout << "退课成功" << endl;
+    Col(3); cout << "退课成功" << endl; Col(0);
+    Sleep(1000);
     //判断course_teacher_list文件夹是否已经创建
     fstream test2("./course_teacher_list/test.txt", ios::out);
     if (!test2)
@@ -819,7 +839,7 @@ void tea_course::Show_next_course()
     }
     else
     {
-        cout << "今天已经没有课了，睡个好觉吧" << endl;
+        Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
         return;
     }
     switch (local_time.tm_wday)
@@ -849,27 +869,33 @@ void tea_course::Show_next_course()
     //调用函数获得课程名字
     string name = Get_course(week, time);
     //输出下一节课的时间和名称
-    cout << "下一节课为:" << name << endl;
-    cout << "时间为:";
-    if (time == "1和2")
+    Col(3); cout << "下一节课为:" << name << endl; Col(0);
+    Col(3); cout << "时间为:"; Col(0);
+    if (name != "")
     {
-        cout << "8:00-9:40" << endl;
+        if (time == "1和2")
+        {
+            Col(3); cout << "8:00-9:40" << endl; Col(0);
+        }
+        else if (time == "3和4")
+        {
+            Col(3); cout << "10:00-11:40" << endl; Col(0);
+        }
+        else if (time == "5和6")
+        {
+            Col(3); cout << "14:00-15:40" << endl; Col(0);
+        }
+        else if (time == "7和8")
+        {
+            Col(3); cout << "16:00-17:40" << endl; Col(0);
+        }
+        else if (time == "9和10和11")
+        {
+            Col(3); cout << "19:00-21:35" << endl; Col(0);
+        }
     }
-    else if (time == "3和4")
-    {
-        cout << "10:00-11:40" << endl;
-    }
-    else if (time == "5和6")
-    {
-        cout << "14:00-15:40" << endl;
-    }
-    else if (time == "7和8")
-    {
-        cout << "16:00-17:40" << endl;
-    }
-    else if (time == "9和10和11")
-    {
-        cout << "19:00-21:35" << endl;
+    else {
+        Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
     }
 }
 
@@ -934,23 +960,26 @@ bool student::Login()
     if (this->Isright())
     {
         system("cls");
-        cout << "登录成功" << endl;
+        Col(3); cout << "登录成功" << endl; Col(0);
         this->Read_stu_information();
+        Sleep(1000);
         return true;
     }
     else
     {
         system("cls");
-        cout << "账号或密码错误，请重新输入" << endl;
+        Col(3); cout << "账号或密码错误，请重新输入" << endl; Col(0);
+        Sleep(1000);
         return false;
     }
 }
 //功能函数定义
 void student::Change_password()
 {
-    cout << "请输入新密码:" << endl;
+    system("cls");
+    Col(3); cout << "请输入新密码:" << endl; Col(0);
     string new_password;
-    cin >> new_password;
+    Col(7); cin >> new_password; Col(0);
     //打开文件
     fstream stu_file("student.txt", ios::in | ios::out);
     if (!stu_file)
@@ -997,23 +1026,25 @@ void student::Change_password()
     //重命名文件
     rename("stu_temp.txt", "student.txt");
     system("cls");
-    cout << "修改成功" << endl;
+    Col(3); cout << "修改成功" << endl; Col(0);
+    Sleep(1000);
 }
 void student::Show_stu_information()
 {
-    cout << "学号:" << this->account << endl;//学号不可修改
-    cout << "姓名:" << this->name << endl;
-    cout << "年级:" << this->stu_grade << endl;
-    cout << "学院:" << this->stu_college << endl;
-    cout << "专业:" << this->stu_profession << endl;
-    cout << "班级:" << this->stu_class << endl;
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    system("cls");
+    Col(3); cout << "学号:" << this->account << endl; Col(0);//学号不可修改
+    Col(3); cout << "姓名:" << this->name << endl; Col(0);
+    Col(3); cout << "年级:" << this->stu_grade << endl; Col(0);
+    Col(3); cout << "学院:" << this->stu_college << endl; Col(0);
+    Col(3); cout << "专业:" << this->stu_profession << endl; Col(0);
+    Col(3); cout << "班级:" << this->stu_class << endl; Col(0);
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void student::Course_search()
 {
     course::Search_course_information();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void student::Choose_course()
@@ -1033,7 +1064,7 @@ void student::Show_course()
     //创建一个临时对象用于显示课表
     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
     stu_course_temp.Show_course();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void student::Show_next_course()
@@ -1041,7 +1072,7 @@ void student::Show_next_course()
     //创建一个临时对象用于显示下一节课的时间和名称
     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
     stu_course_temp.Show_next_course();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 //教师派生类
@@ -1105,14 +1136,16 @@ bool teacher::Login()
     if (this->Isright())
     {
         system("cls");
-        cout << "登录成功" << endl;
+        Col(3); cout << "登录成功" << endl; Col(0);
         this->Read_tea_information();
+        Sleep(1000);
         return true;
     }
     else
     {
         system("cls");
-        cout << "账号或密码错误，请重新登录" << endl;
+        Col(3); cout << "账号或密码错误，请重新输入" << endl; Col(0);
+        Sleep(1000);
         return false;
     }
 }
@@ -1142,9 +1175,10 @@ string teacher::Get_stu_name(string stu_account)
 //功能函数定义
 void teacher::Change_password()
 {
-    cout << "请输入新密码:" << endl;
+    system("cls");
+    Col(3); cout << "请输入新密码:" << endl; Col(0);
     string new_password;
-    cin >> new_password;
+    Col(7); cin >> new_password; Col(0);
     //打开文件
     fstream tea_file("teacher.txt", ios::in | ios::out);
     if (!tea_file)
@@ -1191,14 +1225,16 @@ void teacher::Change_password()
     //重命名文件
     rename("tea_temp.txt", "teacher.txt");
     system("cls");
-    cout << "修改成功" << endl;
+    Col(3); cout << "修改成功" << endl; Col(0);
+    Sleep(1000);
 }
 void teacher::Show_tea_information()
 {
-    cout << "工号:" << this->account << endl;//工号不可修改
-    cout << "姓名:" << this->name << endl;
-    cout << "学院:" << this->tea_college << endl;
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    system("cls");
+    Col(3); cout << "工号:" << this->account << endl; Col(0);//工号不可修改
+    Col(3); cout << "姓名:" << this->name << endl; Col(0);
+    Col(3); cout << "学院:" << this->tea_college << endl; Col(0);
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void teacher::Course_search()
@@ -1240,18 +1276,18 @@ void teacher::Show_stu_list()
             exit(1);
         }
         //显示课程编号和名字
-        cout << "课程编号:" << temp_course_id << "\t";
-        cout << "课程名字:" << temp_course_name << endl;
+        Col(3); cout << "课程编号:" << temp_course_id << "\t"; Col(0);
+        Col(3); cout << "课程名字:" << temp_course_name << endl; Col(0);
         //显示学生名单
         while (getline(course_student_list_file, temp))
         {
-            cout << "学生学号:" << temp << "\t";
-            cout << "学生姓名:" << Get_stu_name(temp) << endl;
+            Col(3); cout << "学生学号:" << temp << "\t"; Col(0);
+            Col(3); cout << "学生姓名:" << Get_stu_name(temp) << endl; Col(0);
         }
         course_student_list_file.close();
     }
     tea_course_file.close();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void teacher::Show_next_course()
@@ -1259,7 +1295,7 @@ void teacher::Show_next_course()
     //创建一个临时对象用于显示下一节课的时间和名称
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
     tea_course_temp.Show_next_course();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 //管理员派生类
@@ -1323,14 +1359,16 @@ bool admin::Login()
     if (this->Isright())
     {
         system("cls");
-        cout << "登录成功" << endl;
+        Col(3); cout << "登录成功" << endl; Col(0);
         this->Read_admin_information();
+        Sleep(1000);
         return true;
     }
     else
     {
         system("cls");
-        cout << "账号或密码错误" << endl;
+        Col(3); cout << "账号或密码错误，请重新输入" << endl; Col(0);
+        Sleep(1000);
         return false;
     }
 }
@@ -1477,9 +1515,10 @@ string admin::Get_tea_name(string tea_account)
 //功能函数定义
 void admin::Change_password()
 {
-    cout << "请输入您的新密码:" << endl;
+    system("cls");
+    Col(3); cout << "请输入您的新密码:" << endl; Col(0);
     string new_password;
-    cin >> new_password;
+    Col(7); cin >> new_password; Col(0);
     //打开文件
     fstream admin_file("admin.txt", ios::in | ios::out);
     if (!admin_file)
@@ -1526,26 +1565,30 @@ void admin::Change_password()
     //重命名文件
     rename("admin_temp.txt", "admin.txt");
     system("cls");
-    cout << "修改成功" << endl;
+    Col(3); cout << "修改成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Show_admin_information()
 {
-    cout << "账号:" << this->account << endl;//账号不可修改
-    cout << "姓名:" << this->name << endl;
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    system("cls");
+    Col(3); cout << "账号:" << this->account << endl; Col(0);//账号不可修改
+    Col(3); cout << "姓名:" << this->name << endl; Col(0);
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void admin::Add_stu_information()
 {
-    cout << "请输入学生信息:" << endl;
-    cout << "(默认密码为123456)" << endl;
-    cout << "学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入学生信息:" << endl; Col(0);
+    Col(3); cout << "(默认密码为123456)" << endl; Col(0);
+    Col(3); cout << "学号:"; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学号是否已经重复
     if (Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "添加失败，学号重复" << endl;
+        Col(3); cout << "添加失败，学号重复" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //重命名student.txt为stu_temp.txt
@@ -1586,21 +1629,21 @@ void admin::Add_stu_information()
         }
     }
     //写入新添加的学生信息
-    cout << "姓名:" << endl;
+    Col(3); cout << "姓名:"; Col(0);
     string name;
-    cin >> name;
-    cout << "年级:" << endl;
+    Col(7); cin >> name; Col(0);
+    Col(3); cout << "年级:"; Col(0);
     string stu_grade;
-    cin >> stu_grade;
-    cout << "学院:" << endl;
+    Col(7); cin >> stu_grade; Col(0);
+    Col(3); cout << "学院:"; Col(0);
     string stu_college;
-    cin >> stu_college;
-    cout << "专业:" << endl;
+    Col(7); cin >> stu_college; Col(0);
+    Col(3); cout << "专业:"; Col(0);
     string stu_profession;
-    cin >> stu_profession;
-    cout << "班级:" << endl;
+    Col(7); cin >> stu_profession; Col(0);
+    Col(3); cout << "班级:"; Col(0);
     string stu_class;
-    cin >> stu_class;
+    Col(7); cin >> stu_class; Col(0);
     //写入文件
     stu_file << temp_accountORcourseid_class << " 123456 " << name << " " << stu_class << " " << stu_grade << " " << stu_college << " " << stu_profession << endl;
     //继续添加剩余的学生信息
@@ -1615,17 +1658,20 @@ void admin::Add_stu_information()
     //删除stu_temp.txt
     remove("stu_temp.txt");
     system("cls");
-    cout << "添加成功" << endl;
+    Col(3); cout << "添加成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Delete_stu_information()
 {
-    cout << "请输入要删除的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要删除的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "删除失败，该学号不存在" << endl;
+        Col(3); cout << "删除失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -1669,17 +1715,20 @@ void admin::Delete_stu_information()
     //重命名文件
     rename("stu_temp.txt", "student.txt");
     system("cls");
-    cout << "删除成功" << endl;
+    Col(3); cout << "删除成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Change_stu_password()
 {
-    cout << "请输入要修改密码的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要修改密码的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "修改失败，该学号不存在" << endl;
+        Col(3); cout << "修改失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     student stu(temp_accountORcourseid_class, "", "", "", "", "", "");
@@ -1687,15 +1736,17 @@ void admin::Change_stu_password()
 }
 void admin::Add_tea_information()
 {
-    cout << "请输入教师信息:" << endl;
-    cout << "(默认密码为123456)" << endl;
-    cout << "工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入教师信息:" << endl; Col(0);
+    Col(3); cout << "(默认密码为123456)" << endl; Col(0);
+    Col(3); cout << "工号:"; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断工号是否已经重复
     if (Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "添加失败，工号重复" << endl;
+        Col(3); cout << "添加失败，工号重复" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //重命名teacher.txt为tea_temp.txt
@@ -1736,12 +1787,12 @@ void admin::Add_tea_information()
         }
     }
     //写入新添加的教师信息
-    cout << "姓名:" << endl;
+    Col(3); cout << "姓名:"; Col(0);
     string name;
-    cin >> name;
-    cout << "学院:" << endl;
+    Col(7); cin >> name; Col(0);
+    Col(3); cout << "学院:"; Col(0);
     string tea_college;
-    cin >> tea_college;
+    Col(7); cin >> tea_college; Col(0);
     //写入文件
     tea_file << temp_accountORcourseid_class << " 123456 " << name << " " << tea_college << endl;
     //继续添加剩余的教师信息
@@ -1756,17 +1807,20 @@ void admin::Add_tea_information()
     //删除tea_temp.txt
     remove("tea_temp.txt");
     system("cls");
-    cout << "添加成功" << endl;
+    Col(3); cout << "添加成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Delete_tea_information()
 {
-    cout << "请输入要删除的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要删除的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "删除失败，该工号不存在" << endl;
+        Col(3); cout << "删除失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -1810,17 +1864,20 @@ void admin::Delete_tea_information()
     //重命名文件
     rename("tea_temp.txt", "teacher.txt");
     system("cls");
-    cout << "删除成功" << endl;
+    Col(3); cout << "删除成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Change_tea_password()
 {
-    cout << "请输入要修改密码的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要修改密码的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "修改失败，该工号不存在" << endl;
+        Col(3); cout << "修改失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     teacher tea(temp_accountORcourseid_class, "", "", "");
@@ -1828,14 +1885,16 @@ void admin::Change_tea_password()
 }
 void admin::Add_course_information()
 {
-    cout << "请输入课程信息:" << endl;
-    cout << "课程编号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl; Col(0);
+    Col(3); cout << "课程编号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断课程是否已经重复
     if (Is_course_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "添加失败，课程编号重复" << endl;
+        Col(3); cout << "添加失败，课程编号重复" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //重命名course.txt为course_temp.txt
@@ -1876,36 +1935,36 @@ void admin::Add_course_information()
         }
     }
     //写入新添加的课程信息
-    cout << "课程名称:" << endl;
+    Col(3); cout << "课程名称:" << endl; Col(0);
     string course_name;
-    cin >> course_name;
-    cout << "年级:" << endl;
+    Col(7); cin >> course_name; Col(0);
+    Col(3); cout << "年级:" << endl; Col(0);
     string course_grade;
-    cin >> course_grade;
-    cout << "学院:" << endl;
+    Col(7); cin >> course_grade; Col(0);
+    Col(3); cout << "学院:" << endl; Col(0);
     string course_college;
-    cin >> course_college;
-    cout << "专业:" << endl;
+    Col(7); cin >> course_college; Col(0);
+    Col(3); cout << "专业:" << endl; Col(0);
     string course_profession;
-    cin >> course_profession;
-    cout << "开课学院:" << endl;
+    Col(7); cin >> course_profession; Col(0);
+    Col(3); cout << "开课学院:" << endl; Col(0);
     string course_college_open;
-    cin >> course_college_open;
-    cout << "课程类别:" << endl;
+    Col(7); cin >> course_college_open; Col(0);
+    Col(3); cout << "课程类别:" << endl; Col(0);
     string course_type;
-    cin >> course_type;
-    cout << "课程性质:" << endl;
+    Col(7); cin >> course_type; Col(0);
+    Col(3); cout << "课程性质:" << endl; Col(0);
     string course_nature;
-    cin >> course_nature;
-    cout << "课程归属:" << endl;
+    Col(7); cin >> course_nature; Col(0);
+    Col(3); cout << "课程归属:" << endl; Col(0);
     string course_belong;
-    cin >> course_belong;
-    cout << "上课星期:" << endl;
+    Col(7); cin >> course_belong; Col(0);
+    Col(3); cout << "上课星期:" << endl; Col(0);
     string course_week;
-    cin >> course_week;
-    cout << "上课节次:" << endl;
+    Col(7); cin >> course_week; Col(0);
+    Col(3); cout << "上课节次:" << endl; Col(0);
     string course_time;
-    cin >> course_time;
+    Col(7); cin >> course_time; Col(3);
     //写入文件
     course_file << temp_accountORcourseid_class << " " << course_name << " " << course_grade << " " << course_college << " " << course_profession << " " << course_college_open << " " << course_type << " " << course_nature << " " << course_belong << " " << course_week << " " << course_time << endl;
     //继续添加剩余的课程信息
@@ -1920,17 +1979,20 @@ void admin::Add_course_information()
     //删除course_temp.txt
     remove("course_temp.txt");
     system("cls");
-    cout << "添加成功" << endl;
+    Col(3); cout << "添加成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Delete_course_information()
 {
-    cout << "请输入要删除的课程编号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要删除的课程编号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断课程是否存在
     if (!Is_course_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "删除失败，该课程编号不存在" << endl;
+        Col(3); cout << "删除失败，该课程编号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -1974,23 +2036,26 @@ void admin::Delete_course_information()
     //重命名文件
     rename("course_temp.txt", "course.txt");
     system("cls");
-    cout << "删除成功" << endl;
+    Col(3); cout << "删除成功" << endl; Col(0);
+    Sleep(1000);
 }
 void admin::Search_course_information()
 {
     course::Search_course_information();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void admin::Search_stu_information()
 {
-    cout << "请输入要查询的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要查询的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "查询失败，该学号不存在" << endl;
+        Col(3); cout << "查询失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -2023,20 +2088,22 @@ void admin::Search_stu_information()
     stu_file >> password >> name >> stu_class >> stu_grade >> stu_college >> stu_profession;
     stu_file.close();
     system("cls");
-    cout << "查询成功:" << endl;
+    Col(3); cout << "查询成功:" << endl; Col(0);
     //创建一个临时对象用于显示学生信息
     student stu(temp_accountORcourseid_class, password, name, stu_class, stu_grade, stu_college, stu_profession);
     stu.Show_stu_information();
 }
 void admin::Search_tea_information()
 {
-    cout << "请输入要查询的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要查询的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "查询失败，该工号不存在" << endl;
+        Col(3); cout << "查询失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开文件
@@ -2066,54 +2133,59 @@ void admin::Search_tea_information()
     tea_file >> password >> name >> tea_college;
     tea_file.close();
     system("cls");
-    cout << "查询成功:" << endl;
+    Col(3); cout << "查询成功:" << endl; Col(0);
     //创建一个临时对象用于显示教师信息
     teacher tea(temp_accountORcourseid_class, password, name, tea_college);
     tea.Show_tea_information();
 }
 void admin::Search_stu_course_information()
 {
-    cout << "请输入要查询的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要查询的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "查询失败，该学号不存在" << endl;
+        Col(3); cout << "查询失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     system("cls");
-    cout << "查询成功:" << endl;
+    Col(3); cout << "查询成功:" << endl; Col(0);
     //创建一个临时对象用于显示课表
     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
     stu_course_temp.Show_course();
 }
 void admin::Search_tea_course_information()
 {
-    cout << "请输入要查询的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要查询的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "查询失败，该工号不存在" << endl;
-        return;
+        Col(7); cout << "查询失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
     }
     system("cls");
-    cout << "查询成功:" << endl;
+    Col(3); cout << "查询成功:" << endl; Col(0);
     //创建一个临时对象用于显示课表
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
     tea_course_temp.Show_tea_course();
 }
 void admin::Add_stu_course()
 {
-    cout << "请输入要添加课程的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要添加课程的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "添加失败，该学号不存在" << endl;
+        Col(3); cout << "添加失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //创建一个临时对象用于选课
@@ -2122,13 +2194,15 @@ void admin::Add_stu_course()
 }
 void admin::Delete_stu_course()
 {
-    cout << "请输入要删除课程的学生学号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要删除课程的学生学号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断学生是否存在
     if (!Is_stu_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "删除失败，该学号不存在" << endl;
+        Col(3); cout << "删除失败，该学号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //创建一个临时对象用于退课
@@ -2137,13 +2211,15 @@ void admin::Delete_stu_course()
 }
 void admin::Add_tea_course()
 {
-    cout << "请输入要添加课程的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要添加课程的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "添加失败，该工号不存在" << endl;
+        Col(3); cout << "添加失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //创建一个临时对象用于添加课程
@@ -2152,13 +2228,15 @@ void admin::Add_tea_course()
 }
 void admin::Delete_tea_course()
 {
-    cout << "请输入要删除课程的教师工号:" << endl;
-    cin >> temp_accountORcourseid_class;
+    system("cls");
+    Col(3); cout << "请输入要删除课程的教师工号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断教师是否存在
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "删除失败，该工号不存在" << endl;
+        Col(3); cout << "删除失败，该工号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //创建一个临时对象用于删除课程
@@ -2167,13 +2245,14 @@ void admin::Delete_tea_course()
 }
 void admin::Search_course_tea_stu_information()
 {
-    cout << "请输入要查询的课程编号:" << endl;
-    cin >> temp_accountORcourseid_class;
-    //判断课程是否存在
+    system("cls");
+    Col(3); cout << "请输入要查询的课程编号:" << endl; Col(0);
+    Col(7); cin >> temp_accountORcourseid_class; Col(0);
     if (!Is_course_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        cout << "查询失败，该课程编号不存在" << endl;
+        Col(3); cout << "查询失败，该课程编号不存在" << endl; Col(0);
+        Sleep(1000);
         return;
     }
     //打开course_teacher_list文件夹下的课程文件
@@ -2182,21 +2261,21 @@ void admin::Search_course_tea_stu_information()
     fstream course_stu_list_file("./course_student_list/" + temp_accountORcourseid_class + ".txt", ios::in);
     string temp;
     //读取教师名单
-    cout << "教师名单:" << endl;
+    Col(3); cout << "教师名单:" << endl; Col(0);
     while (getline(course_tea_list_file, temp))
     {
-        cout << "工号:" << temp << "\t";
-        cout << "姓名:" << Get_tea_name(temp) << endl;
+        Col(3); cout << "工号:" << temp << "\t"; Col(0);
+        Col(3); cout << "姓名:" << Get_tea_name(temp) << endl; Col(0);
     }
     //读取学生名单
-    cout << "学生名单:" << endl;
+    Col(3); cout << "学生名单:" << endl; Col(0);
     while (getline(course_stu_list_file, temp))
     {
-        cout << "学号:" << temp << "\t";
-        cout << "姓名:" << Get_stu_name(temp) << endl;
+        Col(3); cout << "学号:" << temp << "\t"; Col(0);
+        Col(3); cout << "姓名:" << Get_stu_name(temp) << endl; Col(0);
     }
     course_tea_list_file.close();
     course_stu_list_file.close();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }

@@ -81,12 +81,12 @@ void stu_menu()
 {
 	List stu_menu_list(8);
 	system("cls");
-	cout << "请输入您的账号:" << endl;
+	Col(3); cout << "请输入您的账号:" << endl; Col(0);
 	string account;
-	cin >> account;
-	cout << "请输入您的密码:" << endl;
+	Col(7); cin >> account; Col(0);
+	Col(3); cout << "请输入您的密码:" << endl; Col(0);
 	string password;
-	cin >> password;
+	Col(7); cin >> password; Col(0);
 	student stu(account, password, "", "", "", "", "");
 	if (stu.Login()) 
 	{
@@ -95,39 +95,39 @@ void stu_menu()
 			while (true)
 			{
 				system("cls");
-				Col(3); cout << "             学生菜单           " << endl; cout << "  ";
+				Col(3); cout << "                   学生菜单               " << endl; cout << "  ";
 				if (stu_menu_list.GetListSelection() == 1) Col(7);
 				else Col(6);
-				cout << "           1.修改密码       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               1.修改密码             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 2) Col(7);
 				else Col(6);
-				cout << "         2.显示个人信息     "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "             2.显示个人信息           "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 3) Col(7);
 				else Col(6);
-				cout << "         3.查询课程信息     "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "             3.查询课程信息           "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 4) Col(7);
 				else Col(6);
-				cout << "             4.选课         "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "                 4.选课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 5) Col(7);
 				else Col(6);
-				cout << "             5.退课         "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "                 5.退课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 6) Col(7);
 				else Col(6);
-				cout << "           6.显示课表       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               6.显示课表             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 7) Col(7);
 				else Col(6);
-				cout << "           7.下一节课       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               7.下一节课             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (stu_menu_list.GetListSelection() == 8) Col(7);
 				else Col(6);
-				cout << "           8.返回主页       "; Col(3); cout << "  "; Col(0); cout << endl;
-				Col(3); cout << "                                " << endl; Col(0);
+				cout << "               8.返回主页             "; Col(3); cout << "  "; Col(0); cout << endl;
+				Col(3); cout << "                                          " << endl; Col(0);
 				if (stu_menu_list.GetListSelection() == -1) { cout << "此页面没有上一页"; stu_menu_list.SetListSelection(1); }
 				if (stu_menu_list.GetListSelection() == -2) { cout << "此页面没有下一页"; stu_menu_list.SetListSelection(1); }
 				stu_menu_list.Deal_input();
@@ -162,12 +162,12 @@ void tea_menu()
 {
 	List tea_menu_list(7);
 	system("cls");
-	cout << "请输入您的账号:" << endl;
+	Col(3); cout << "请输入您的账号:" << endl; Col(0);
 	string account;
-	cin >> account;
-	cout << "请输入您的密码:" << endl;
+	Col(7); cin >> account; Col(0);
+	Col(3); cout << "请输入您的密码:" << endl; Col(0);
 	string password;
-	cin >> password;
+	Col(7); cin >> password; Col(0);
 	teacher tea(account, password, "", "");
 	if (tea.Login())
 	{
@@ -179,31 +179,31 @@ void tea_menu()
 				Col(3); cout << "                   教师菜单                 " << endl; cout << "  ";
 				if (tea_menu_list.GetListSelection() == 1) Col(7);
 				else Col(6);
-				cout << "                 修改密码               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               1.修改密码               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 2) Col(7);
 				else Col(6);
-				cout << "               显示个人信息             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "             2.显示个人信息             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 3) Col(7);
 				else Col(6);
-				cout << "               查询课程信息             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "             3.查询课程信息             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 4) Col(7);
 				else Col(6);
-				cout << "                 显示课表               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               4.显示课表               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 5) Col(7);
 				else Col(6);
-				cout << "           显示所教课程的学生名单       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "         5.显示所教课程的学生名单       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 6) Col(7);
 				else Col(6);
-				cout << "                 下一节课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
+				cout << "               6.下一节课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << " ";
 				Col(3); cout << " ";
 				if (tea_menu_list.GetListSelection() == 7) Col(7);
 				else Col(6);
-				cout << "                 返回主页               "; Col(3); cout << "  "; Col(0); cout << endl;
+				cout << "               7.返回主页               "; Col(3); cout << "  "; Col(0); cout << endl;
 				Col(3); cout << "                                            " << endl; Col(0);
 				tea_menu_list.Deal_input();
 				if (tea_menu_list.GetBreakword())
@@ -236,12 +236,12 @@ void admin_menu()
 {
 	List admin_menu_list(5);
 	system("cls");
-	cout << "请输入您的账号:" << endl;
+	Col(3); cout << "请输入您的账号:" << endl; Col(0);
 	string account;
-	cin >> account;
-	cout << "请输入您的密码:" << endl;
+	Col(7); cin >> account; Col(0);
+	Col(3); cout << "请输入您的密码:" << endl; Col(0);
 	string password;
-	cin >> password;
+	Col(7); cin >> password; Col(0);
 	admin ad(account, password, "");
 	if (ad.Login())
 	{
