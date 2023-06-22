@@ -33,6 +33,72 @@ public:
     static void Search_course_information();
     //查询课程是否存在
     static bool Iscourse_exist(string temp_course_id);
+    //选学院菜单
+    static string course_college_menu();
+    //学院1-专业菜单
+    static string course1_profession_menu();
+    //学院2-专业菜单
+    static string course2_profession_menu();
+    //学院3-专业菜单
+    static string course3_profession_menu();
+    //学院4-专业菜单
+    static string course4_profession_menu();
+    //学院5-专业菜单
+    static string course5_profession_menu();
+    //学院6-专业菜单
+    static string course6_profession_menu();
+    //学院7-专业菜单
+    static string course7_profession_menu();
+    //学院8-专业菜单
+    static string course8_profession_menu();
+    //学院9-专业菜单
+    static string course9_profession_menu();
+    //学院10-专业菜单
+    static string course10_profession_menu();
+    //学院11-专业菜单
+    static string course11_profession_menu();
+    //学院12-专业菜单
+    static string course12_profession_menu();
+    //学院13-专业菜单
+    static string course13_profession_menu();
+    //学院14-专业菜单
+    static string course14_profession_menu();
+    //学院15-专业菜单
+    static string course15_profession_menu();
+    //学院16-专业菜单
+    static string course16_profession_menu();
+    //学院17-专业菜单
+    static string course17_profession_menu();
+    //学院18-专业菜单
+    static string course18_profession_menu();
+    //学院19-专业菜单
+    static string course19_profession_menu();
+    //学院20-专业菜单
+    static string course20_profession_menu();
+    //学院21-专业菜单
+    static string course21_profession_menu();
+    //学院22-专业菜单
+    static string course22_profession_menu();
+    //学院23-专业菜单
+    static string course23_profession_menu();
+    //学院24-专业菜单
+    static string course24_profession_menu();
+    //学院25-专业菜单
+    static string course25_profession_menu();
+    //课程类别菜单
+    static string course_type_menu();
+    //课程性质菜单
+    static string course_nature_menu();
+    //课程归属菜单
+    static string course_belong_menu();
+    //课程时间菜单
+    static string course_week_menu();
+    //必须选择一个的week菜单
+    static string course_week2_menu();
+    //课程节次菜单
+    static string course_time_menu();
+    //必须选择一个的time菜单
+    static string course_time2_menu();
 };
 //学生选课信息派生类
 class stu_course :public course

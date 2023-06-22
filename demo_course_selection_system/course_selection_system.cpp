@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include "course_selection_system.h"
 #include "console_list.h"
@@ -11,20 +12,215 @@ using namespace std;
 //功能函数定义
 void course::Search_course_information()
 {
-    cout << "请依次输入筛选条件:" << endl << "(严格按照以下格式输入,不进行筛选的条件请输入0)" << endl;
-    cout << "(编号 名称 年级 学院 专业 开课学院 课程类别 课程性质 课程归属 上课星期 上课节次)" << endl;
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:"; 
     string course_id;
+    Col(7); cin >> course_id;
+    Col(3); cout << "名称:";
     string course_name;
+    Col(7); cin >> course_name;
+    Col(3); cout << "年级:";
     string course_grade;
+    Col(7); cin >> course_grade;
+    Col(3); cout << "学院:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_college;
+    course_college = course_college_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl; Col(0);
     string course_profession;
+    if (course_college != "0")
+    {
+        Col(3); cout << "专业:(请选择)"; Col(0);
+        cout << endl << endl << endl;
+        system("pause");
+        if (course_college == "药学院") {
+            course_profession = course1_profession_menu();
+        }
+        else if (course_college == "医学院") {
+            course_profession = course2_profession_menu();
+        }
+        else if (course_college == "法学院") {
+            course_profession = course3_profession_menu();
+        }
+        else if (course_college == "文学院") {
+            course_profession = course4_profession_menu();
+        }
+        else if (course_college == "财经学院") {
+            course_profession = course5_profession_menu();
+        }
+        else if (course_college == "管理学院") {
+            course_profession = course6_profession_menu();
+        }
+        else if (course_college == "艺术学院") {
+            course_profession = course7_profession_menu();
+        }
+        else if (course_college == "外国语学院") {
+            course_profession = course8_profession_menu();
+        }
+        else if (course_college == "知识产权学院") {
+            course_profession = course9_profession_menu();
+        }
+        else if (course_college == "化学化工学院") {
+            course_profession = course10_profession_menu();
+        }
+        else if (course_college == "机械工程学院") {
+            course_profession = course11_profession_menu();
+        }
+        else if (course_college == "农业工程学院") {
+            course_profession = course12_profession_menu();
+        }
+        else if (course_college == "教师教育学院") {
+            course_profession = course13_profession_menu();
+        }
+        else if (course_college == "生命科学学院") {
+            course_profession = course14_profession_menu();
+        }
+        else if (course_college == "数学科学学院") {
+            course_profession = course15_profession_menu();
+        }
+        else if (course_college == "马克思主义学院") {
+            course_profession = course16_profession_menu();
+        }
+        else if (course_college == "电气信息工程学院") {
+            course_profession = course17_profession_menu();
+        }
+        else if (course_college == "能源与动力工程学院") {
+            course_profession = course18_profession_menu();
+        }
+        else if (course_college == "汽车与交通工程学院") {
+            course_profession = course19_profession_menu();
+        }
+        else if (course_college == "食品与生物工程学院") {
+            course_profession = course20_profession_menu();
+        }
+        else if (course_college == "土木工程与力学学院") {
+            course_profession = course21_profession_menu();
+        }
+        else if (course_college == "物理与电子工程学院") {
+            course_profession = course22_profession_menu();
+        }
+        else if (course_college == "材料科学与工程学院") {
+            course_profession = course23_profession_menu();
+        }
+        else if (course_college == "环境与安全工程学院") {
+            course_profession = course24_profession_menu();
+        }
+        else if (course_college == "计算机科学与通信工程学院") {
+            course_profession = course25_profession_menu();
+        }
+    }
+    else {
+        course_profession = "0";
+    }
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl; Col(0);
+    Col(3); cout << "开课学院:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_college_open;
+    course_college_open = course_college_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl; Col(0);
+    Col(3); cout << "课程类别:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_type;
+    course_type = course_type_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl; Col(0);
+    Col(3); cout << "课程性质:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_nature;
+    course_nature = course_nature_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl; Col(0);
+    Col(3); cout << "课程归属:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_belong;
+    course_belong = course_belong_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    cout << "课程归属:" << course_belong << endl; Col(0);
+    Col(3); cout << "课程星期:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_week;
+    course_week = course_week_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    cout << "课程归属:" << course_belong << endl;
+    cout << "课程星期:" << course_week << endl; Col(0);
+    Col(3); cout << "课程节次:(请选择)"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
     string course_time;
-    cin >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time;
+    course_time = course_time_menu();
+    system("cls");
+    Col(3); cout << "请依次输入筛选条件:" << endl << "(不进行筛选的条件请输入0或不选择)" << endl;
+    cout << "编号:" << course_id << endl;
+    cout << "名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    cout << "课程归属:" << course_belong << endl;
+    cout << "课程星期:" << course_week << endl;
+    cout << "课程节次:" << course_time << endl; Col(0);
+    Col(2); cout << endl << endl << endl << "查询中..." << endl; Col(0);
+    Sleep(1000);
     course temp_course(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
     //打开文件
     fstream course_file("course.txt", ios::in);
@@ -34,6 +230,18 @@ void course::Search_course_information()
         exit(1);
     }
     system("cls");
+    Col(2); cout << "以下课程符合筛选条件:" << endl; Col(0);
+    Col(3); cout << left << setw(4) << "编号";
+    Col(6); cout << left << setw(34) << "名称";
+    Col(3); cout << left << setw(4) << "年级";
+    Col(6); cout << left << setw(24) << "学院";
+    Col(3); cout << left << setw(28) << "专业";
+    Col(6); cout << left << setw(24) << "开课学院";
+    Col(3); cout << left << setw(12) << "课程类别";
+    Col(6); cout << left << setw(8) << "课程性质";
+    Col(3); cout << left << setw(12) << "课程归属";
+    Col(6); cout << left << setw(6) << "星期";
+    Col(3); cout << left << setw(9) << "课程节次" << endl;
     //不读取第一行作为信息
     string temp;
     getline(course_file, temp);
@@ -43,13 +251,22 @@ void course::Search_course_information()
     {
         if ((course_id == temp_course.course_id || temp_course.course_id == "0") && (course_name == temp_course.course_name || temp_course.course_name == "0") && (course_grade == temp_course.course_grade || temp_course.course_grade == "0") && (course_college == temp_course.course_college || temp_course.course_college == "0") && (course_profession == temp_course.course_profession || temp_course.course_profession == "0") && (course_college_open == temp_course.course_college_open || temp_course.course_college_open == "0") && (course_type == temp_course.course_type || temp_course.course_type == "0") && (course_nature == temp_course.course_nature || temp_course.course_nature == "0") && (course_belong == temp_course.course_belong || temp_course.course_belong == "0") && (course_week == temp_course.course_week || temp_course.course_week == "0") && (course_time == temp_course.course_time || temp_course.course_time == "0"))
         {
-            cout << "以下课程符合筛选条件:" << endl;
-            cout << course_id << " " << course_name << " " << course_grade << " " << course_college << " " << course_profession << " " << course_college_open << " " << course_type << " " << course_nature << " " << course_belong << " " << course_week << " " << course_time << endl;
+            Col(3); cout << left << setw(4) << course_id;
+            Col(6); cout << left << setw(34) << course_name;
+            Col(3); cout << left << setw(4) << course_grade;
+            Col(6); cout << left << setw(24) << course_college;
+            Col(3); cout << left << setw(28) << course_profession;
+            Col(6); cout << left << setw(24) << course_college_open;
+            Col(3); cout << left << setw(12) << course_type;
+            Col(6); cout << left << setw(8) << course_nature;
+            Col(3); cout << left << setw(12) << course_belong;
+            Col(6); cout << left << setw(6) << course_week;
+            Col(3); cout << left << setw(9) << course_time << endl;
+            Col(0);
         }
         course_file >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time;
     }
     course_file.close();
-    cout << "查询完毕" << endl;
 }
 bool course::Iscourse_exist(string temp_course_id)
 {
@@ -75,6 +292,1488 @@ bool course::Iscourse_exist(string temp_course_id)
     }
     course_file.close();
     return false;
+}
+string course::course_college_menu()
+{
+    List course_college_menu_list(26);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "                                                     学院列表                                                      " << endl; cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(13) << "1.不选择"; Col(3); cout <<setw(100)<< "  "; 
+        cout << endl; cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(13) << "2.药学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "7.管理学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 12) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "12.机械工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 17) Col(7);
+        else Col(6);
+        cout << left << setw(22) << "17.马克思主义学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 22) Col(7);
+        else Col(6);
+        cout << left << setw(28) << "22.土木工程与力学学院"; Col(3); cout << "  ";
+        cout << endl; Col(3); cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(13) << "3.医学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "8.艺术学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 13) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "13.农业工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 18) Col(7);
+        else Col(6);
+        cout << left << setw(22) << "18.电气信息工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 23) Col(7);
+        else Col(6);
+        cout << left << setw(28) << "23.物理与电子工程学院"; Col(3); cout << "  ";
+        cout << endl; Col(3); cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(13) << "4.法学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "9.外国语学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 14) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "14.教师教育学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 19) Col(7);
+        else Col(6);
+        cout << left << setw(22) << "19.能源与动力工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 24) Col(7);
+        else Col(6);
+        cout << left << setw(28) << "24.材料科学与工程学院"; Col(3); cout << "  ";
+        cout << endl; Col(3); cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(13) << "5.文学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 10) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "10.知识产权学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 15) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "15.生命科学学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 20) Col(7);
+        else Col(6);
+        cout << left << setw(22) << "20.汽车与交通工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 25) Col(7);
+        else Col(6);
+        cout << left << setw(28) << "25.环境与安全工程学院"; Col(3); cout << "  ";
+        cout << endl; Col(3); cout << "  ";
+        if (course_college_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(13) << "6.财经学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 11) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "11.化学化工学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 16) Col(7);
+        else Col(6);
+        cout << left << setw(16) << "16.数学科学学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 21) Col(7);
+        else Col(6);
+        cout << left << setw(22) << "21.食品与生物工程学院"; Col(3); cout << "    ";
+        if (course_college_menu_list.GetListSelection() == 26) Col(7);
+        else Col(6);
+        cout << left << setw(28) << "26.计算机科学与通信工程学院"; Col(3); cout << "  ";
+        cout << endl; Col(3); cout << "  ";
+        cout << setw(113) <<" " << endl; Col(0);
+        course_college_menu_list.Deal_input();
+        if (course_college_menu_list.GetBreakword())
+        {
+            course_college_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_college_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "药学院"; break; }
+    case 3: {return "医学院"; break; }
+    case 4: {return "法学院"; break; }
+    case 5: {return "文学院"; break; }
+    case 6: {return "财经学院"; break; }
+    case 7: {return "管理学院"; break; }
+    case 8: {return "艺术学院"; break; }
+    case 9: {return "外国语学院"; break; }
+    case 10: {return "知识产权学院"; break; }
+    case 11: {return "化学化工学院"; break; }
+    case 12: {return "机械工程学院"; break; }
+    case 13: {return "农业工程学院"; break; }
+    case 14: {return "教师教育学院"; break; }
+    case 15: {return "生命科学学院"; break; }
+    case 16: {return "数学科学学院"; break; }
+    case 17: {return "马克思主义学院"; break; }
+    case 18: {return "电气信息工程学院"; break; }
+    case 19: {return "能源与动力工程学院"; break; }
+    case 20: {return "汽车与交通工程学院"; break; }
+    case 21: {return "食品与生物工程学院"; break; }
+    case 22: {return "土木工程与力学学院"; break; }
+    case 23: {return "物理与电子工程学院"; break; }
+    case 24: {return "材料科学与工程学院"; break; }
+    case 25: {return "环境与安全工程学院"; break; }
+    case 26: {return "计算机科学与通信工程学院"; break; }
+    }
+}
+string course::course1_profession_menu()
+{
+    List course1_profession_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         药学院          " << endl;Col(3); cout << "   ";
+        if (course1_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  ";cout << endl; cout << "   ";
+        if (course1_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.药物制剂"; Col(3); cout << "  ";cout << endl;cout << "   ";
+        if (course1_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.制药工程"; Col(3); cout << "  ";cout << endl;cout << "   ";
+        if (course1_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.药学类"; Col(3); cout << "  ";cout << endl;cout << "   ";
+        if (course1_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.药学"; Col(3); cout << "  ";cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course1_profession_menu_list.Deal_input();
+        if (course1_profession_menu_list.GetBreakword())
+        {
+            course1_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course1_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "药学制剂"; break; }
+    case 3: {return "制药工程"; break; }
+    case 4: {return "药学类"; break; }
+    case 5: {return "药学"; break; }
+    }
+}
+string course::course2_profession_menu()
+{
+    List course2_profession_menu_list(7);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         医学院          " << endl; Col(3); cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.卫生检验与检疫"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.医学检验技术"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.医学影像学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.临床医学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.预防医学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course2_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.护理学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course2_profession_menu_list.Deal_input();
+        if (course2_profession_menu_list.GetBreakword())
+        {
+            course2_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course2_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "卫生检验与检疫"; break; }
+    case 3: {return "医学检验技术"; break; }
+    case 4: {return "医学影像学"; break; }
+    case 5: {return "临床医学"; break; }
+    case 6: {return "预防医学"; break; }
+    case 7: {return "护理学"; break; }
+    }
+}
+string course::course3_profession_menu()
+{
+    List course3_profession_menu_list(2);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         法学院          " << endl; Col(3); cout << "   ";
+        if (course3_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course3_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.法学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course3_profession_menu_list.Deal_input();
+        if (course3_profession_menu_list.GetBreakword())
+        {
+            course3_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course3_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "法学"; break; }
+    }
+}
+string course::course4_profession_menu()
+{
+    List course4_profession_menu_list(3);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         文学院          " << endl; Col(3); cout << "   ";
+        if (course4_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course4_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.汉语国际教育"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course4_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.汉语言文学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course4_profession_menu_list.Deal_input();
+        if (course4_profession_menu_list.GetBreakword())
+        {
+            course4_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course4_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "汉语国际教育"; break; }
+    case 3: {return "汉语言文学"; break; }
+    }
+}
+string course::course5_profession_menu()
+{
+    List course5_profession_menu_list(8);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "        财经学院         " << endl; Col(3); cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.国际经济与贸易"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.财务管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.能源经济"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.保险学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.会计学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.金融学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course5_profession_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "8.统计学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course5_profession_menu_list.Deal_input();
+        if (course5_profession_menu_list.GetBreakword())
+        {
+            course5_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course5_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "国际经济与贸易"; break; }
+    case 3: {return "财务管理"; break; }
+    case 4: {return "能源经济"; break; }
+    case 5: {return "保险学"; break; }
+    case 6: {return "会计学"; break; }
+    case 7: {return "金融学"; break; }
+    case 8: {return "统计学"; break; }
+    }
+}
+string course::course6_profession_menu()
+{
+    List course6_profession_menu_list(9);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "        管理学院         " << endl; Col(3); cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.信息管理与信息系统"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.公共事业管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.人力资源管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.电子商务"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.工商管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.工业工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "8.市场营销"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course6_profession_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "9.物流管理"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course6_profession_menu_list.Deal_input();
+        if (course6_profession_menu_list.GetBreakword())
+        {
+            course6_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course6_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "信息管理与信息系统"; break; }
+    case 3: {return "公共事业管理"; break; }
+    case 4: {return "人力资源管理"; break; }
+    case 5: {return "电子商务"; break; }
+    case 6: {return "工商管理"; break; }
+    case 7: {return "工业工程"; break; }
+    case 8: {return "市场营销"; break; }
+    case 9: {return "物流管理"; break; }
+    }
+}
+string course::course7_profession_menu()
+{
+    List course7_profession_menu_list(9);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "        艺术学院         " << endl; Col(3); cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.数字媒体艺术"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.视觉传达设计"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.产品设计"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.公共艺术"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.工业设计"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.环境设计"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "8.美术学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course7_profession_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "9.动画"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course7_profession_menu_list.Deal_input();
+        if (course7_profession_menu_list.GetBreakword())
+        {
+            course7_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course7_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "数字媒体艺术"; break; }
+    case 3: {return "视觉传达设计"; break; }
+    case 4: {return "产品设计"; break; }
+    case 5: {return "公共艺术"; break; }
+    case 6: {return "工业设计"; break; }
+    case 7: {return "环境设计"; break; }
+    case 8: {return "美术学"; break; }
+    case 9: {return "动画"; break; }
+    }
+}
+string course::course8_profession_menu()
+{
+    List course8_profession_menu_list(3);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       外国语学院        " << endl; Col(3); cout << "   ";
+        if (course8_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course8_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.日语"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course8_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.英语"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course8_profession_menu_list.Deal_input();
+        if (course8_profession_menu_list.GetBreakword())
+        {
+            course8_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course8_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "日语"; break; }
+    case 3: {return "英语"; break; }
+    }
+}
+string course::course9_profession_menu()
+{
+    List course9_profession_menu_list(2);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       知识产权学院      " << endl; Col(3); cout << "   ";
+        if (course9_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course9_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.知识产权"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course9_profession_menu_list.Deal_input();
+        if (course9_profession_menu_list.GetBreakword())
+        {
+            course9_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course9_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "知识产权"; break; }
+    }
+}
+string course::course10_profession_menu()
+{
+    List course10_profession_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       化学化工学院      " << endl; Col(3); cout << "   ";
+        if (course10_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course10_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.化学工程与工艺"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course10_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.应用化学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course10_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.化学类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course10_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.化学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course10_profession_menu_list.Deal_input();
+        if (course10_profession_menu_list.GetBreakword())
+        {
+            course10_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course10_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "化学工程与工艺"; break; }
+    case 3: {return "应用化学"; break; }
+    case 4: {return "化学类"; break; }
+    case 5: {return "化学"; break; }
+    }
+}
+string course::course11_profession_menu()
+{
+    List course11_profession_menu_list(6);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "        机械工程学院          " << endl; Col(3); cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.机械设计制造及其自动化"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.光电信息科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.测控技术与仪器"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.智能制造工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course11_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "6.机械电子工程"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course11_profession_menu_list.Deal_input();
+        if (course11_profession_menu_list.GetBreakword())
+        {
+            course11_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course11_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "机械设计制造及其自动化"; break; }
+    case 3: {return "光电信息科学与工程"; break; }
+    case 4: {return "测控技术与仪器"; break; }
+    case 5: {return "智能制造工程"; break; }
+    case 6: {return "机械电子工程"; break; }
+    }
+}
+string course::course12_profession_menu()
+{
+    List course12_profession_menu_list(4);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         农业工程学院         " << endl; Col(3); cout << "   ";
+        if (course12_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course12_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.农业机械化及其自动化"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course12_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.设施农业科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course12_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.农业智能装备工程"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course12_profession_menu_list.Deal_input();
+        if (course12_profession_menu_list.GetBreakword())
+        {
+            course12_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course12_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "农业机械化及其自动化"; break; }
+    case 3: {return "设施农业科学与工程"; break; }
+    case 4: {return "农业智能装备工程"; break; }
+    }
+}
+string course::course13_profession_menu()
+{
+    List course13_profession_menu_list(2);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       教师教育学院      " << endl; Col(3); cout << "   ";
+        if (course13_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course13_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.教育技术学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course13_profession_menu_list.Deal_input();
+        if (course13_profession_menu_list.GetBreakword())
+        {
+            course13_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course13_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "教育技术学"; break; }
+    }
+}
+string course::course14_profession_menu()
+{
+    List course14_profession_menu_list(2);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       生命科学学院      " << endl; Col(3); cout << "   ";
+        if (course14_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course14_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.生物科学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course14_profession_menu_list.Deal_input();
+        if (course14_profession_menu_list.GetBreakword())
+        {
+            course14_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course14_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "生物科学"; break; }
+    }
+}
+string course::course15_profession_menu()
+{
+    List course15_profession_menu_list(3);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       数学科学学院      " << endl; Col(3); cout << "   ";
+        if (course15_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course15_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.数据计算及应用"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course15_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.数学与应用数学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course15_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.金融数学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course15_profession_menu_list.Deal_input();
+        if (course15_profession_menu_list.GetBreakword())
+        {
+            course15_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course15_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "数据计算及应用"; break; }
+    case 3: {return "数学与应用数学"; break; }
+    case 4: {return "金融数学"; break; }
+    }
+}
+string course::course16_profession_menu()
+{
+    List course16_profession_menu_list(2);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       马克思主义学院    " << endl; Col(3); cout << "   ";
+        if (course16_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course16_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.思想政治教育"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course16_profession_menu_list.Deal_input();
+        if (course16_profession_menu_list.GetBreakword())
+        {
+            course16_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course16_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "思想政治教育"; break; }
+    }
+}
+string course::course17_profession_menu()
+{
+    List course17_profession_menu_list(7);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "     电气信息工程学院    " << endl; Col(3); cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.电气工程及其自动化"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.电子信息工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.生物医学工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.机器人工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.农业电气化"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course17_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.自动化"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course17_profession_menu_list.Deal_input();
+        if (course17_profession_menu_list.GetBreakword())
+        {
+            course17_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course17_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "电气工程及其自动化"; break; }
+    case 3: {return "电子信息工程"; break; }
+    case 4: {return "生物医学工程"; break; }
+    case 5: {return "机器人工程"; break; }
+    case 6: {return "农业电气化"; break; }
+    case 7: {return "自动化"; break; }
+    }
+}
+string course::course18_profession_menu()
+{
+    List course18_profession_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "       能源与动力工程学院     " << endl; Col(3); cout << "   ";
+        if (course18_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course18_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.建筑环境与能源应用工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course18_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.新能源科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course18_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.储能科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course18_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.能源与动力工程"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course18_profession_menu_list.Deal_input();
+        if (course18_profession_menu_list.GetBreakword())
+        {
+            course18_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course18_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "建筑环境与能源应用工程"; break; }
+    case 3: {return "新能源科学与工程"; break; }
+    case 4: {return "储能科学与工程"; break; }
+    case 5: {return "能源与动力工程"; break; }
+    }
+}
+string course::course19_profession_menu()
+{
+    List course19_profession_menu_list(6);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   汽车与交通工程学院    " << endl; Col(3); cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.能源与动力工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.新能源汽车工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.车辆工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.交通工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course19_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.交通运输"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course19_profession_menu_list.Deal_input();
+        if (course19_profession_menu_list.GetBreakword())
+        {
+            course19_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course19_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "能源与动力工程"; break; }
+    case 3: {return "新能源汽车工程"; break; }
+    case 4: {return "车辆工程"; break; }
+    case 5: {return "交通工程"; break; }
+    case 6: {return "交通运输"; break; }
+    }
+}
+string course::course20_profession_menu()
+{
+    List course20_profession_menu_list(7);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   食品与生物工程学院    " << endl; Col(3); cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.食品科学与工程类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.食品科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.食品营养与健康"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.食品质量与安全"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.生物工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course20_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.生物技术"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course20_profession_menu_list.Deal_input();
+        if (course20_profession_menu_list.GetBreakword())
+        {
+            course20_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course20_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "食品科学与工程类"; break; }
+    case 3: {return "食品科学与工程"; break; }
+    case 4: {return "食品营养与健康"; break; }
+    case 5: {return "食品质量与安全"; break; }
+    case 6: {return "生物工程"; break; }
+    case 7: {return "生物技术"; break; }
+    }
+}
+string course::course21_profession_menu()
+{
+    List course21_profession_menu_list(4);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   土木工程与力学学院    " << endl; Col(3); cout << "   ";
+        if (course21_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course21_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.工程管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course21_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.工程力学"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course21_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.土木工程"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course21_profession_menu_list.Deal_input();
+        if (course21_profession_menu_list.GetBreakword())
+        {
+            course21_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course21_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "工程管理"; break; }
+    case 3: {return "工程力学"; break; }
+    case 4: {return "土木工程"; break; }
+    }
+}
+string course::course22_profession_menu()
+{
+    List course22_profession_menu_list(3);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   物理与电子工程学院    " << endl; Col(3); cout << "   ";
+        if (course22_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course22_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.微电子科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course22_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.物理学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course22_profession_menu_list.Deal_input();
+        if (course22_profession_menu_list.GetBreakword())
+        {
+            course22_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course22_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "微电子科学与工程"; break; }
+    case 3: {return "物理学"; break; }
+    }
+}
+string course::course23_profession_menu()
+{
+    List course23_profession_menu_list(9);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "      材料科学与工程学院      " << endl; Col(3); cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.材料成型及控制工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.无机非金属材料工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.高分子材料与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.材料科学与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "6.复合材料与工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "7.金属材料工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "8.冶金工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course23_profession_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "9.材料类"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course23_profession_menu_list.Deal_input();
+        if (course23_profession_menu_list.GetBreakword())
+        {
+            course23_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course23_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "材料成型及控制工程"; break; }
+    case 3: {return "无机非金属材料工程"; break; }
+    case 4: {return "高分子材料与工程"; break; }
+    case 5: {return "材料科学与工程"; break; }
+    case 6: {return "复合材料与工程"; break; }
+    case 7: {return "金属材料工程"; break; }
+    case 8: {return "冶金工程"; break; }
+    case 9: {return "材料类"; break; }
+    }
+}
+string course::course24_profession_menu()
+{
+    List course24_profession_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "      环境与安全工程学院      " << endl; Col(3); cout << "   ";
+        if (course24_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course24_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.应急技术与管理"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course24_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.环保设备工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course24_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.安全工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course24_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.环境工程"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course24_profession_menu_list.Deal_input();
+        if (course24_profession_menu_list.GetBreakword())
+        {
+            course24_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course24_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "应急技术与管理"; break; }
+    case 3: {return "环保设备工程"; break; }
+    case 4: {return "安全工程"; break; }
+    case 5: {return "环境工程"; break; }
+    }
+}
+string course::course25_profession_menu()
+{
+    List course25_profession_menu_list(8);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   计算机科学与通信工程学院   " << endl; Col(3); cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.计算机科学与技术"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.智能科学与技术"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.物联网工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.软件工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "6.通信工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "7.网络工程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course25_profession_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "8.信息安全"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course25_profession_menu_list.Deal_input();
+        if (course25_profession_menu_list.GetBreakword())
+        {
+            course25_profession_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course25_profession_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "计算机科学与技术"; break; }
+    case 3: {return "智能科学与技术"; break; }
+    case 4: {return "物联网工程"; break; }
+    case 5: {return "软件工程"; break; }
+    case 6: {return "通信工程"; break; }
+    case 7: {return "网络工程"; break; }
+    case 8: {return "信息安全"; break; }
+    }
+}
+string course::course_type_menu()
+{
+    List course_type_menu_list(9);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         课程类别        " << endl; Col(3); cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.通识教育必修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.通识教育选修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.专业基础必修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.专业基础选修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "6.专业方向必修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "7.专业方向选修"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "8.实践环节"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_type_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "9.自主研学"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course_type_menu_list.Deal_input();
+        if (course_type_menu_list.GetBreakword())
+        {
+            course_type_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_type_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "通识教育必修"; break; }
+    case 3: {return "通识教育选修"; break; }
+    case 4: {return "专业基础必修"; break; }
+    case 5: {return "专业基础选修"; break; }
+    case 6: {return "专业方向必修"; break; }
+    case 7: {return "专业方向选修"; break; }
+    case 8: {return "实践环节"; break; }
+    case 9: {return "自主研学"; break; }
+    }
+}
+string course::course_nature_menu()
+{
+    List course_nature_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "         课程性质        " << endl; Col(3); cout << "   ";
+        if (course_nature_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(20) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_nature_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "2.必修课"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_nature_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "3.选修课"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_nature_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "4.限选课"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_nature_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(20) << "5.校选修课"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(25) << " " << endl; Col(0);
+        course_nature_menu_list.Deal_input();
+        if (course_nature_menu_list.GetBreakword())
+        {
+            course_nature_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_nature_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "必修课"; break; }
+    case 3: {return "选修课"; break; }
+    case 4: {return "限选课"; break; }
+    case 5: {return "校选修课"; break; }
+    }
+}
+string course::course_belong_menu()
+{
+    List course_belong_menu_list(10);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "           课程归属           " << endl; Col(3); cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(25) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "2.经济管理类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "3.艺术鉴赏类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "4.自然科学类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "5.综合教育类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "6.工程技术类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 7) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "7.创新创业类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 8) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "8.大国三农类"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 9) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "9.自主研学课程"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_belong_menu_list.GetListSelection() == 10) Col(7);
+        else Col(6);
+        cout << left << setw(25) << "10.劳动教育与实践"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(30) << " " << endl; Col(0);
+        course_belong_menu_list.Deal_input();
+        if (course_belong_menu_list.GetBreakword())
+        {
+            course_belong_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_belong_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "经济管理类"; break; }
+    case 3: {return "艺术鉴赏类"; break; }
+    case 4: {return "自然科学类"; break; }
+    case 5: {return "综合教育类"; break; }
+    case 6: {return "工程技术类"; break; }
+    case 7: {return "创新创业类"; break; }
+    case 8: {return "大国三农类"; break; }
+    case 9: {return "自主研学课程"; break; }
+    case 10: {return "劳动教育与实践"; break; }
+    }
+}
+string course::course_week_menu()
+{
+    List course_week_menu_list(6);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   上课星期    " << endl; Col(3); cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(10) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "2.星期一"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "3.星期二"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "4.星期三"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "5.星期四"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "6.星期五"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(15) << " " << endl; Col(0);
+        course_week_menu_list.Deal_input();
+        if (course_week_menu_list.GetBreakword())
+        {
+            course_week_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_week_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "星期一"; break; }
+    case 3: {return "星期二"; break; }
+    case 4: {return "星期三"; break; }
+    case 5: {return "星期四"; break; }
+    case 6: {return "星期五"; break; }
+    }
+}
+string course::course_week2_menu()
+{
+    List course_week2_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "   上课星期    " << endl; Col(3); cout << "   ";
+        if (course_week2_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(10) << "1.星期一";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week2_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "2.星期二"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week2_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "3.星期三"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week2_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "4.星期四"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_week2_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(10) << "5.星期五"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(15) << " " << endl; Col(0);
+        course_week2_menu_list.Deal_input();
+        if (course_week2_menu_list.GetBreakword())
+        {
+            course_week2_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_week2_menu_list.GetListSelection())
+    {
+    case 1: {return "星期一"; break; }
+    case 2: {return "星期二"; break; }
+    case 3: {return "星期三"; break; }
+    case 4: {return "星期四"; break; }
+    case 5: {return "星期五"; break; }
+    }
+}
+string course::course_time_menu()
+{
+    List course_time_menu_list(6);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "      上课节次     " << endl; Col(3); cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(14) << "1.不选择";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "2.一和二"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "3.三和四"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "4.五和六"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "5.七和八"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time_menu_list.GetListSelection() == 6) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "6.九和十和十一"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(19) << " " << endl; Col(0);
+        course_time_menu_list.Deal_input();
+        if (course_time_menu_list.GetBreakword())
+        {
+            course_time_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_time_menu_list.GetListSelection())
+    {
+    case 1: {return "0"; break; }
+    case 2: {return "1和2"; break; }
+    case 3: {return "3和4"; break; }
+    case 4: {return "5和6"; break; }
+    case 5: {return "7和8"; break; }
+    case 6: {return "9和10和11"; break; }
+    }
+}
+string course::course_time2_menu()
+{
+    List course_time2_menu_list(5);
+    system("cls");
+    while (true)
+    {
+        system("cls");
+        Col(3); cout << "     上课节次      " << endl; Col(3); cout << "   ";
+        if (course_time2_menu_list.GetListSelection() == 1) Col(7);
+        else Col(2);
+        cout << left << setw(14) << "1.一和二";
+        Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time2_menu_list.GetListSelection() == 2) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "2.三和四"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time2_menu_list.GetListSelection() == 3) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "3.五和六"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time2_menu_list.GetListSelection() == 4) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "4.七和八"; Col(3); cout << "  "; cout << endl; cout << "   ";
+        if (course_time2_menu_list.GetListSelection() == 5) Col(7);
+        else Col(6);
+        cout << left << setw(14) << "5.九和十和十一"; Col(3); cout << "  "; cout << endl;
+        Col(3); cout << setw(19) << " " << endl; Col(0);
+        course_time2_menu_list.Deal_input();
+        if (course_time2_menu_list.GetBreakword())
+        {
+            course_time2_menu_list.SetBreakword(0);
+            break;
+        }
+    }
+    switch (course_time2_menu_list.GetListSelection())
+    {
+    case 1: {return "1和2"; break; }
+    case 2: {return "3和4"; break; }
+    case 3: {return "5和6"; break; }
+    case 4: {return "7和8"; break; }
+    case 5: {return "9和10和11"; break; }
+    }
 }
 
 //学生选课信息派生类
@@ -393,7 +2092,48 @@ void stu_course::Show_course()
         exit(1);
     }
     //显示课表
-
+    Col(3); cout << left << setw(12) << " ";
+    Col(7); cout << left << setw(30) << "星期一";
+    Col(3); cout << left << setw(30) << "星期二";
+    Col(7); cout << left << setw(30) << "星期三";
+    Col(3); cout << left << setw(30) << "星期四";
+    Col(7); cout << left << setw(30) << "星期五";
+    cout << endl;
+    Col(7); cout << left << setw(12) << "一.二节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "1和2");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "1和2");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "1和2");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "1和2");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "1和2");
+    cout << endl;
+    Col(3); cout << left << setw(12) << "三.四节";
+    Col(7); cout << left << setw(30) << Get_course("星期一", "3和4");
+    Col(3); cout << left << setw(30) << Get_course("星期二", "3和4");
+    Col(7); cout << left << setw(30) << Get_course("星期三", "3和4");
+    Col(3); cout << left << setw(30) << Get_course("星期四", "3和4");
+    Col(7); cout << left << setw(30) << Get_course("星期五", "3和4");
+    cout << endl;
+    Col(7); cout << left << setw(12) << "五.六节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "5和6");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "5和6");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "5和6");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "5和6");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "5和6");
+    cout << endl;
+    Col(3); cout << left << setw(12) << "七.八节";
+    Col(7); cout << left << setw(30) << Get_course("星期一", "7和8");
+    Col(3); cout << left << setw(30) << Get_course("星期二", "7和8");
+    Col(7); cout << left << setw(30) << Get_course("星期三", "7和8");
+    Col(3); cout << left << setw(30) << Get_course("星期四", "7和8");
+    Col(7); cout << left << setw(30) << Get_course("星期五", "7和8");
+    cout << endl;
+    Col(7); cout << left << setw(12) << "九.十.十一节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "9和10和11");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "9和10和11");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "9和10和11");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "9和10和11");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "9和10和11");
+    Col(0); cout << endl;
     stu_course_file.close();
 }
 void stu_course::Show_next_course()
@@ -804,7 +2544,48 @@ void tea_course::Show_tea_course()
         exit(1);
     }
     //显示课表
-
+    Col(3); cout << left << setw(12) << " ";
+    Col(7); cout << left << setw(30) << "星期一";
+    Col(3); cout << left << setw(30) << "星期二";
+    Col(7); cout << left << setw(30) << "星期三";
+    Col(3); cout << left << setw(30) << "星期四";
+    Col(7); cout << left << setw(30) << "星期五";
+    cout << endl;
+    Col(7); cout << left << setw(12) << "一.二节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "1和2");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "1和2");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "1和2");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "1和2");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "1和2");
+    cout << endl;
+    Col(3); cout << left << setw(12) << "三.四节";
+    Col(7); cout << left << setw(30) << Get_course("星期一", "3和4");
+    Col(3); cout << left << setw(30) << Get_course("星期二", "3和4");
+    Col(7); cout << left << setw(30) << Get_course("星期三", "3和4");
+    Col(3); cout << left << setw(30) << Get_course("星期四", "3和4");
+    Col(7); cout << left << setw(30) << Get_course("星期五", "3和4");
+    cout << endl;
+    Col(7); cout << left << setw(12) << "五.六节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "5和6");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "5和6");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "5和6");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "5和6");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "5和6");
+    cout << endl;
+    Col(3); cout << left << setw(12) << "七.八节";
+    Col(7); cout << left << setw(30) << Get_course("星期一", "7和8");
+    Col(3); cout << left << setw(30) << Get_course("星期二", "7和8");
+    Col(7); cout << left << setw(30) << Get_course("星期三", "7和8");
+    Col(3); cout << left << setw(30) << Get_course("星期四", "7和8");
+    Col(7); cout << left << setw(30) << Get_course("星期五", "7和8");
+    cout << endl;
+    Col(7); cout << left << setw(12) << "九.十.十一节";
+    Col(3); cout << left << setw(30) << Get_course("星期一", "9和10和11");
+    Col(7); cout << left << setw(30) << Get_course("星期二", "9和10和11");
+    Col(3); cout << left << setw(30) << Get_course("星期三", "9和10和11");
+    Col(7); cout << left << setw(30) << Get_course("星期四", "9和10和11");
+    Col(3); cout << left << setw(30) << Get_course("星期五", "9和10和11");
+    Col(0); cout << endl;
     tea_course_file.close();
 }
 void tea_course::Show_next_course()
@@ -1240,7 +3021,7 @@ void teacher::Show_tea_information()
 void teacher::Course_search()
 {
     course::Search_course_information();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void teacher::Show_course()
@@ -1579,10 +3360,12 @@ void admin::Show_admin_information()
 void admin::Add_stu_information()
 {
     system("cls");
-    Col(3); cout << "请输入学生信息:" << endl; Col(0);
-    Col(3); cout << "(默认密码为123456)" << endl; Col(0);
-    Col(3); cout << "学号:"; Col(0);
-    Col(7); cin >> temp_accountORcourseid_class; Col(0);
+    Col(3); 
+    cout << "请输入学生信息:" << endl;
+    cout << "(默认密码为123456)" << endl;
+    cout << "学号:";
+    Col(7); cin >> temp_accountORcourseid_class; 
+    Col(0);
     //判断学号是否已经重复
     if (Is_stu_exist(temp_accountORcourseid_class))
     {
@@ -1629,21 +3412,123 @@ void admin::Add_stu_information()
         }
     }
     //写入新添加的学生信息
-    Col(3); cout << "姓名:"; Col(0);
+    Col(3); cout << "姓名:";
     string name;
-    Col(7); cin >> name; Col(0);
-    Col(3); cout << "年级:"; Col(0);
+    Col(7); cin >> name;
+    Col(3); cout << "年级:";
     string stu_grade;
-    Col(7); cin >> stu_grade; Col(0);
-    Col(3); cout << "学院:"; Col(0);
+    Col(7); cin >> stu_grade;
+    Col(3); cout << "学院:(请选择)"; Col(0);
     string stu_college;
-    Col(7); cin >> stu_college; Col(0);
-    Col(3); cout << "专业:"; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    stu_college = course::course_college_menu();
+    system("cls");
+    Col(3);
+    cout << "请输入学生信息:" << endl;
+    cout << "(默认密码为123456)" << endl;
+    cout << "学号:" << temp_accountORcourseid_class << endl;
+    cout << "姓名:" << name << endl;
+    cout << "年级:" << stu_grade << endl;
+    cout << "学院:" << stu_college << endl;
+    Col(0);
     string stu_profession;
-    Col(7); cin >> stu_profession; Col(0);
-    Col(3); cout << "班级:"; Col(0);
+    if (stu_college != "0")
+    {
+        Col(3); cout << "专业:(请选择)"; Col(0);
+        cout << endl << endl << endl;
+        system("pause");
+        if (stu_college == "药学院") {
+            stu_profession = course::course1_profession_menu();
+        }
+        else if (stu_college == "医学院") {
+            stu_profession = course::course2_profession_menu();
+        }
+        else if (stu_college == "法学院") {
+            stu_profession = course::course3_profession_menu();
+        }
+        else if (stu_college == "文学院") {
+            stu_profession = course::course4_profession_menu();
+        }
+        else if (stu_college == "财经学院") {
+            stu_profession = course::course5_profession_menu();
+        }
+        else if (stu_college == "管理学院") {
+            stu_profession = course::course6_profession_menu();
+        }
+        else if (stu_college == "艺术学院") {
+            stu_profession = course::course7_profession_menu();
+        }
+        else if (stu_college == "外国语学院") {
+            stu_profession = course::course8_profession_menu();
+        }
+        else if (stu_college == "知识产权学院") {
+            stu_profession = course::course9_profession_menu();
+        }
+        else if (stu_college == "化学化工学院") {
+            stu_profession = course::course10_profession_menu();
+        }
+        else if (stu_college == "机械工程学院") {
+            stu_profession = course::course11_profession_menu();
+        }
+        else if (stu_college == "农业工程学院") {
+            stu_profession = course::course12_profession_menu();
+        }
+        else if (stu_college == "教师教育学院") {
+            stu_profession = course::course13_profession_menu();
+        }
+        else if (stu_college == "生命科学学院") {
+            stu_profession = course::course14_profession_menu();
+        }
+        else if (stu_college == "数学科学学院") {
+            stu_profession = course::course15_profession_menu();
+        }
+        else if (stu_college == "马克思主义学院") {
+            stu_profession = course::course16_profession_menu();
+        }
+        else if (stu_college == "电气信息工程学院") {
+            stu_profession = course::course17_profession_menu();
+        }
+        else if (stu_college == "能源与动力工程学院") {
+            stu_profession = course::course18_profession_menu();
+        }
+        else if (stu_college == "汽车与交通工程学院") {
+            stu_profession = course::course19_profession_menu();
+        }
+        else if (stu_college == "食品与生物工程学院") {
+            stu_profession = course::course20_profession_menu();
+        }
+        else if (stu_college == "土木工程与力学学院") {
+            stu_profession = course::course21_profession_menu();
+        }
+        else if (stu_college == "物理与电子工程学院") {
+            stu_profession = course::course22_profession_menu();
+        }
+        else if (stu_college == "材料科学与工程学院") {
+            stu_profession = course::course23_profession_menu();
+        }
+        else if (stu_college == "环境与安全工程学院") {
+            stu_profession = course::course24_profession_menu();
+        }
+        else if (stu_college == "计算机科学与通信工程学院") {
+            stu_profession = course::course25_profession_menu();
+        }
+    }
+    else {
+        stu_profession = "0";
+    }
+    system("cls");
+    Col(3); cout << "请输入学生信息:" << endl;
+    cout << "(默认密码为123456)" << endl;
+    cout << "学号:" << temp_accountORcourseid_class << endl;
+    cout << "姓名:" << name << endl;
+    cout << "年级:" << stu_grade << endl;
+    cout << "学院:" << stu_college << endl;
+    cout << "专业:" << stu_profession << endl;
+    Col(0);
+    Col(3); cout << "班级:";
     string stu_class;
-    Col(7); cin >> stu_class; Col(0);
+    Col(7); cin >> stu_grade; Col(0);
     //写入文件
     stu_file << temp_accountORcourseid_class << " 123456 " << name << " " << stu_class << " " << stu_grade << " " << stu_college << " " << stu_profession << endl;
     //继续添加剩余的学生信息
@@ -1737,9 +3622,10 @@ void admin::Change_stu_password()
 void admin::Add_tea_information()
 {
     system("cls");
-    Col(3); cout << "请输入教师信息:" << endl; Col(0);
-    Col(3); cout << "(默认密码为123456)" << endl; Col(0);
-    Col(3); cout << "工号:"; Col(0);
+    Col(3);
+    cout << "请输入教师信息:" << endl;
+    cout << "(默认密码为123456)" << endl;
+    cout << "工号:";
     Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断工号是否已经重复
     if (Is_tea_exist(temp_accountORcourseid_class))
@@ -1787,12 +3673,14 @@ void admin::Add_tea_information()
         }
     }
     //写入新添加的教师信息
-    Col(3); cout << "姓名:"; Col(0);
+    Col(3); cout << "姓名:";
     string name;
     Col(7); cin >> name; Col(0);
-    Col(3); cout << "学院:"; Col(0);
+    Col(3); cout << "学院:(请选择)"; Col(0);
     string tea_college;
-    Col(7); cin >> tea_college; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    tea_college = course::course_college_menu();
     //写入文件
     tea_file << temp_accountORcourseid_class << " 123456 " << name << " " << tea_college << endl;
     //继续添加剩余的教师信息
@@ -1887,7 +3775,7 @@ void admin::Add_course_information()
 {
     system("cls");
     Col(3); cout << "请输入课程信息:" << endl; Col(0);
-    Col(3); cout << "课程编号:" << endl; Col(0);
+    Col(3); cout << "课程编号:"; Col(0);
     Col(7); cin >> temp_accountORcourseid_class; Col(0);
     //判断课程是否已经重复
     if (Is_course_exist(temp_accountORcourseid_class))
@@ -1935,36 +3823,203 @@ void admin::Add_course_information()
         }
     }
     //写入新添加的课程信息
-    Col(3); cout << "课程名称:" << endl; Col(0);
+    Col(3); cout << "课程名称:"; Col(0);
     string course_name;
     Col(7); cin >> course_name; Col(0);
-    Col(3); cout << "年级:" << endl; Col(0);
+    Col(3); cout << "年级:"; Col(0);
     string course_grade;
     Col(7); cin >> course_grade; Col(0);
-    Col(3); cout << "学院:" << endl; Col(0);
+    Col(3); cout << "学院:(请选择)"; Col(0);
     string course_college;
-    Col(7); cin >> course_college; Col(0);
-    Col(3); cout << "专业:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_college = course::course_college_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    Col(0);
     string course_profession;
-    Col(7); cin >> course_profession; Col(0);
-    Col(3); cout << "开课学院:" << endl; Col(0);
+    if (course_college != "0")
+    {
+        Col(3); cout << "专业:(请选择)"; Col(0);
+        cout << endl << endl << endl;
+        system("pause");
+        if (course_college == "药学院") {
+            course_profession = course::course1_profession_menu();
+        }
+        else if (course_college == "医学院") {
+            course_profession = course::course2_profession_menu();
+        }
+        else if (course_college == "法学院") {
+            course_profession = course::course3_profession_menu();
+        }
+        else if (course_college == "文学院") {
+            course_profession = course::course4_profession_menu();
+        }
+        else if (course_college == "财经学院") {
+            course_profession = course::course5_profession_menu();
+        }
+        else if (course_college == "管理学院") {
+            course_profession = course::course6_profession_menu();
+        }
+        else if (course_college == "艺术学院") {
+            course_profession = course::course7_profession_menu();
+        }
+        else if (course_college == "外国语学院") {
+            course_profession = course::course8_profession_menu();
+        }
+        else if (course_college == "知识产权学院") {
+            course_profession = course::course9_profession_menu();
+        }
+        else if (course_college == "化学化工学院") {
+            course_profession = course::course10_profession_menu();
+        }
+        else if (course_college == "机械工程学院") {
+            course_profession = course::course11_profession_menu();
+        }
+        else if (course_college == "农业工程学院") {
+            course_profession = course::course12_profession_menu();
+        }
+        else if (course_college == "教师教育学院") {
+            course_profession = course::course13_profession_menu();
+        }
+        else if (course_college == "生命科学学院") {
+            course_profession = course::course14_profession_menu();
+        }
+        else if (course_college == "数学科学学院") {
+            course_profession = course::course15_profession_menu();
+        }
+        else if (course_college == "马克思主义学院") {
+            course_profession = course::course16_profession_menu();
+        }
+        else if (course_college == "电气信息工程学院") {
+            course_profession = course::course17_profession_menu();
+        }
+        else if (course_college == "能源与动力工程学院") {
+            course_profession = course::course18_profession_menu();
+        }
+        else if (course_college == "汽车与交通工程学院") {
+            course_profession = course::course19_profession_menu();
+        }
+        else if (course_college == "食品与生物工程学院") {
+            course_profession = course::course20_profession_menu();
+        }
+        else if (course_college == "土木工程与力学学院") {
+            course_profession = course::course21_profession_menu();
+        }
+        else if (course_college == "物理与电子工程学院") {
+            course_profession = course::course22_profession_menu();
+        }
+        else if (course_college == "材料科学与工程学院") {
+            course_profession = course::course23_profession_menu();
+        }
+        else if (course_college == "环境与安全工程学院") {
+            course_profession = course::course24_profession_menu();
+        }
+        else if (course_college == "计算机科学与通信工程学院") {
+            course_profession = course::course25_profession_menu();
+        }
+    }
+    else {
+        course_profession = "0";
+    }
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    Col(0);
+    Col(3); cout << "开课学院:(请选择)"; Col(0);
     string course_college_open;
-    Col(7); cin >> course_college_open; Col(0);
-    Col(3); cout << "课程类别:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_college_open = course::course_college_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    Col(0);
+    Col(3); cout << "课程类别:(请选择)"; Col(0);
     string course_type;
-    Col(7); cin >> course_type; Col(0);
-    Col(3); cout << "课程性质:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_type = course::course_type_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    Col(0);
+    Col(3); cout << "课程性质:(请选择)"; Col(0);
     string course_nature;
-    Col(7); cin >> course_nature; Col(0);
-    Col(3); cout << "课程归属:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_nature = course::course_nature_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    Col(0);
+    Col(3); cout << "课程归属:(请选择)"; Col(0);
     string course_belong;
-    Col(7); cin >> course_belong; Col(0);
-    Col(3); cout << "上课星期:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_belong = course::course_belong_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    cout << "课程归属:" << course_belong << endl;
+    Col(0);
+    Col(3); cout << "上课星期:(请选择)"; Col(0);
     string course_week;
-    Col(7); cin >> course_week; Col(0);
-    Col(3); cout << "上课节次:" << endl; Col(0);
+    cout << endl << endl << endl;
+    system("pause");
+    course_week = course::course_week2_menu();
+    system("cls");
+    Col(3); cout << "请输入课程信息:" << endl;
+    cout << "课程编号:" << temp_accountORcourseid_class << endl;
+    cout << "课程名称:" << course_name << endl;
+    cout << "年级:" << course_grade << endl;
+    cout << "学院:" << course_college << endl;
+    cout << "专业:" << course_profession << endl;
+    cout << "开课学院:" << course_college_open << endl;
+    cout << "课程类别:" << course_type << endl;
+    cout << "课程性质:" << course_nature << endl;
+    cout << "课程归属:" << course_belong << endl;
+    cout << "上课星期:" << course_week << endl;
+    Col(0);
+    Col(3); cout << "上课节次:(请选择)"; Col(0);
     string course_time;
-    Col(7); cin >> course_time; Col(3);
+    cout << endl << endl << endl;
+    system("pause");
+    course_time = course::course_time2_menu();
+    system("cls");
     //写入文件
     course_file << temp_accountORcourseid_class << " " << course_name << " " << course_grade << " " << course_college << " " << course_profession << " " << course_college_open << " " << course_type << " " << course_nature << " " << course_belong << " " << course_week << " " << course_time << endl;
     //继续添加剩余的课程信息
@@ -2035,6 +4090,10 @@ void admin::Delete_course_information()
     remove("course.txt");
     //重命名文件
     rename("course_temp.txt", "course.txt");
+    //删除course_student_list文件夹下学生选课信息
+    remove(("course_student_list\\" + temp_accountORcourseid_class + ".txt").c_str());
+    //删除course_teacher_list文件夹下教师选课信息
+    remove(("course_teacher_list\\" + temp_accountORcourseid_class + ".txt").c_str());
     system("cls");
     Col(3); cout << "删除成功" << endl; Col(0);
     Sleep(1000);
@@ -2261,14 +4320,14 @@ void admin::Search_course_tea_stu_information()
     fstream course_stu_list_file("./course_student_list/" + temp_accountORcourseid_class + ".txt", ios::in);
     string temp;
     //读取教师名单
-    Col(3); cout << "教师名单:" << endl; Col(0);
+    Col(2); cout << "教师名单:" << endl; Col(0);
     while (getline(course_tea_list_file, temp))
     {
         Col(3); cout << "工号:" << temp << "\t"; Col(0);
         Col(3); cout << "姓名:" << Get_tea_name(temp) << endl; Col(0);
     }
     //读取学生名单
-    Col(3); cout << "学生名单:" << endl; Col(0);
+    Col(2); cout << "学生名单:" << endl; Col(0);
     while (getline(course_stu_list_file, temp))
     {
         Col(3); cout << "学号:" << temp << "\t"; Col(0);
