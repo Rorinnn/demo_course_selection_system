@@ -2088,50 +2088,52 @@ void stu_course::Show_course()
     fstream stu_course_file("./stu_course/" + stu_account + ".txt", ios::in);
     if (!stu_course_file)
     {
-        cout << "文件打开失败" << endl;
-        exit(1);
+        system("cls");
+        Col(3); cout << "暂无选课信息" << endl; Col(0);
+        return;
     }
+    system("cls");
     //显示课表
     Col(3); cout << left << setw(12) << " ";
-    Col(7); cout << left << setw(30) << "星期一";
+    Col(6); cout << left << setw(30) << "星期一";
     Col(3); cout << left << setw(30) << "星期二";
-    Col(7); cout << left << setw(30) << "星期三";
+    Col(6); cout << left << setw(30) << "星期三";
     Col(3); cout << left << setw(30) << "星期四";
-    Col(7); cout << left << setw(30) << "星期五";
+    Col(6); cout << left << setw(30) << "星期五";
     cout << endl;
-    Col(7); cout << left << setw(12) << "一.二节";
+    Col(6); cout << left << setw(12) << "一.二节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "1和2");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "1和2");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "1和2");
     Col(3); cout << left << setw(30) << Get_course("星期三", "1和2");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "1和2");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "1和2");
     Col(3); cout << left << setw(30) << Get_course("星期五", "1和2");
     cout << endl;
     Col(3); cout << left << setw(12) << "三.四节";
-    Col(7); cout << left << setw(30) << Get_course("星期一", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期一", "3和4");
     Col(3); cout << left << setw(30) << Get_course("星期二", "3和4");
-    Col(7); cout << left << setw(30) << Get_course("星期三", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期三", "3和4");
     Col(3); cout << left << setw(30) << Get_course("星期四", "3和4");
-    Col(7); cout << left << setw(30) << Get_course("星期五", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期五", "3和4");
     cout << endl;
-    Col(7); cout << left << setw(12) << "五.六节";
+    Col(6); cout << left << setw(12) << "五.六节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "5和6");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "5和6");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "5和6");
     Col(3); cout << left << setw(30) << Get_course("星期三", "5和6");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "5和6");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "5和6");
     Col(3); cout << left << setw(30) << Get_course("星期五", "5和6");
     cout << endl;
     Col(3); cout << left << setw(12) << "七.八节";
-    Col(7); cout << left << setw(30) << Get_course("星期一", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期一", "7和8");
     Col(3); cout << left << setw(30) << Get_course("星期二", "7和8");
-    Col(7); cout << left << setw(30) << Get_course("星期三", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期三", "7和8");
     Col(3); cout << left << setw(30) << Get_course("星期四", "7和8");
-    Col(7); cout << left << setw(30) << Get_course("星期五", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期五", "7和8");
     cout << endl;
-    Col(7); cout << left << setw(12) << "九.十.十一节";
+    Col(6); cout << left << setw(12) << "九.十.十一节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "9和10和11");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "9和10和11");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "9和10和11");
     Col(3); cout << left << setw(30) << Get_course("星期三", "9和10和11");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "9和10和11");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "9和10和11");
     Col(3); cout << left << setw(30) << Get_course("星期五", "9和10和11");
     Col(0); cout << endl;
     stu_course_file.close();
@@ -2540,50 +2542,52 @@ void tea_course::Show_tea_course()
     fstream tea_course_file("./tea_course/" + tea_account + ".txt", ios::in);
     if (!tea_course_file)
     {
-        cout << "文件打开失败" << endl;
-        exit(1);
+        system("cls");
+        Col(3); cout << "暂无选课信息" << endl; Col(0);
+        return;
     }
+    system("cls");
     //显示课表
     Col(3); cout << left << setw(12) << " ";
-    Col(7); cout << left << setw(30) << "星期一";
+    Col(6); cout << left << setw(30) << "星期一";
     Col(3); cout << left << setw(30) << "星期二";
-    Col(7); cout << left << setw(30) << "星期三";
+    Col(6); cout << left << setw(30) << "星期三";
     Col(3); cout << left << setw(30) << "星期四";
-    Col(7); cout << left << setw(30) << "星期五";
+    Col(6); cout << left << setw(30) << "星期五";
     cout << endl;
-    Col(7); cout << left << setw(12) << "一.二节";
+    Col(6); cout << left << setw(12) << "一.二节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "1和2");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "1和2");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "1和2");
     Col(3); cout << left << setw(30) << Get_course("星期三", "1和2");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "1和2");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "1和2");
     Col(3); cout << left << setw(30) << Get_course("星期五", "1和2");
     cout << endl;
     Col(3); cout << left << setw(12) << "三.四节";
-    Col(7); cout << left << setw(30) << Get_course("星期一", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期一", "3和4");
     Col(3); cout << left << setw(30) << Get_course("星期二", "3和4");
-    Col(7); cout << left << setw(30) << Get_course("星期三", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期三", "3和4");
     Col(3); cout << left << setw(30) << Get_course("星期四", "3和4");
-    Col(7); cout << left << setw(30) << Get_course("星期五", "3和4");
+    Col(6); cout << left << setw(30) << Get_course("星期五", "3和4");
     cout << endl;
-    Col(7); cout << left << setw(12) << "五.六节";
+    Col(6); cout << left << setw(12) << "五.六节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "5和6");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "5和6");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "5和6");
     Col(3); cout << left << setw(30) << Get_course("星期三", "5和6");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "5和6");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "5和6");
     Col(3); cout << left << setw(30) << Get_course("星期五", "5和6");
     cout << endl;
     Col(3); cout << left << setw(12) << "七.八节";
-    Col(7); cout << left << setw(30) << Get_course("星期一", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期一", "7和8");
     Col(3); cout << left << setw(30) << Get_course("星期二", "7和8");
-    Col(7); cout << left << setw(30) << Get_course("星期三", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期三", "7和8");
     Col(3); cout << left << setw(30) << Get_course("星期四", "7和8");
-    Col(7); cout << left << setw(30) << Get_course("星期五", "7和8");
+    Col(6); cout << left << setw(30) << Get_course("星期五", "7和8");
     cout << endl;
-    Col(7); cout << left << setw(12) << "九.十.十一节";
+    Col(6); cout << left << setw(12) << "九.十.十一节";
     Col(3); cout << left << setw(30) << Get_course("星期一", "9和10和11");
-    Col(7); cout << left << setw(30) << Get_course("星期二", "9和10和11");
+    Col(6); cout << left << setw(30) << Get_course("星期二", "9和10和11");
     Col(3); cout << left << setw(30) << Get_course("星期三", "9和10和11");
-    Col(7); cout << left << setw(30) << Get_course("星期四", "9和10和11");
+    Col(6); cout << left << setw(30) << Get_course("星期四", "9和10和11");
     Col(3); cout << left << setw(30) << Get_course("星期五", "9和10和11");
     Col(0); cout << endl;
     tea_course_file.close();
@@ -2650,10 +2654,11 @@ void tea_course::Show_next_course()
     //调用函数获得课程名字
     string name = Get_course(week, time);
     //输出下一节课的时间和名称
-    Col(3); cout << "下一节课为:" << name << endl; Col(0);
-    Col(3); cout << "时间为:"; Col(0);
+    system("cls");
     if (name != "")
     {
+        Col(3); cout << "下一节课为:" << name << endl; Col(0);
+        Col(3); cout << "时间为:"; Col(0);
         if (time == "1和2")
         {
             Col(3); cout << "8:00-9:40" << endl; Col(0);
@@ -2845,6 +2850,7 @@ void student::Show_course()
     //创建一个临时对象用于显示课表
     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
     stu_course_temp.Show_course();
+    ///
     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
@@ -3029,7 +3035,7 @@ void teacher::Show_course()
     //创建一个临时对象用于显示课表
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
     tea_course_temp.Show_tea_course();
-    cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl;
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
 void teacher::Show_stu_list()
@@ -3041,6 +3047,7 @@ void teacher::Show_stu_list()
         cout << "文件打开失败" << endl;
         exit(1);
     }
+    system("cls");
     //显示所授课课程和学生名单
     string temp_course_id;
     string temp_course_name;
@@ -3057,13 +3064,16 @@ void teacher::Show_stu_list()
             exit(1);
         }
         //显示课程编号和名字
-        Col(3); cout << "课程编号:" << temp_course_id << "\t"; Col(0);
-        Col(3); cout << "课程名字:" << temp_course_name << endl; Col(0);
+        Col(2); cout << "课程编号:" << left << setw(6) << temp_course_id; Col(0);
+        Col(3); cout << "课程名字:" << left << setw(26) << temp_course_name << endl; Col(0);
         //显示学生名单
         while (getline(course_student_list_file, temp))
         {
-            Col(3); cout << "学生学号:" << temp << "\t"; Col(0);
-            Col(3); cout << "学生姓名:" << Get_stu_name(temp) << endl; Col(0);
+            Col(3); cout <<left<<setw(10)<< "学生学号:";
+            Col(6); cout << left << setw(10) << temp;
+            Col(3); cout <<left<<setw(10)<< "学生姓名:";
+            Col(6); cout << left << setw(10) << Get_stu_name(temp);
+            Col(0); cout << endl;
         }
         course_student_list_file.close();
     }
@@ -3528,7 +3538,7 @@ void admin::Add_stu_information()
     Col(0);
     Col(3); cout << "班级:";
     string stu_class;
-    Col(7); cin >> stu_grade; Col(0);
+    Col(7); cin >> stu_class; Col(0);
     //写入文件
     stu_file << temp_accountORcourseid_class << " 123456 " << name << " " << stu_class << " " << stu_grade << " " << stu_college << " " << stu_profession << endl;
     //继续添加剩余的学生信息
@@ -4215,6 +4225,8 @@ void admin::Search_stu_course_information()
     //创建一个临时对象用于显示课表
     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
     stu_course_temp.Show_course();
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
+    system("pause");
 }
 void admin::Search_tea_course_information()
 {
@@ -4225,14 +4237,17 @@ void admin::Search_tea_course_information()
     if (!Is_tea_exist(temp_accountORcourseid_class))
     {
         system("cls");
-        Col(7); cout << "查询失败，该工号不存在" << endl; Col(0);
+        Col(3); cout << "查询失败，该工号不存在" << endl; Col(0);
         Sleep(1000);
+        return;
     }
     system("cls");
     Col(3); cout << "查询成功:" << endl; Col(0);
     //创建一个临时对象用于显示课表
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
     tea_course_temp.Show_tea_course();
+    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
+    system("pause");
 }
 void admin::Add_stu_course()
 {
@@ -4323,15 +4338,21 @@ void admin::Search_course_tea_stu_information()
     Col(2); cout << "教师名单:" << endl; Col(0);
     while (getline(course_tea_list_file, temp))
     {
-        Col(3); cout << "工号:" << temp << "\t"; Col(0);
-        Col(3); cout << "姓名:" << Get_tea_name(temp) << endl; Col(0);
+        Col(3); cout << left << setw(5) << "工号:";
+        Col(6); cout << left << setw(10) << temp;
+        Col(3); cout << left << setw(5) << "姓名:";
+        Col(6); cout << left << setw(10) << Get_tea_name(temp);
+        Col(0); cout << endl;
     }
     //读取学生名单
     Col(2); cout << "学生名单:" << endl; Col(0);
     while (getline(course_stu_list_file, temp))
     {
-        Col(3); cout << "学号:" << temp << "\t"; Col(0);
-        Col(3); cout << "姓名:" << Get_stu_name(temp) << endl; Col(0);
+        Col(3); cout << left << setw(5) << "学号:";
+        Col(6); cout << left << setw(10) << temp;
+        Col(3); cout << left << setw(5) << "姓名:";
+        Col(6); cout << left << setw(10) << Get_stu_name(temp);
+        Col(0); cout << endl;
     }
     course_tea_list_file.close();
     course_stu_list_file.close();
