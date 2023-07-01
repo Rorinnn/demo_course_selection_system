@@ -7,6 +7,253 @@
 #include "console_list.h"
 using namespace std;
 
+//维护
+void maintenance()
+{
+	system("cls");
+	Col(2);cout<<"该功能维护中。。。"<<endl;Col(0);
+	Sleep(1000);
+}
+
+//课程链表函数定义
+void course_list::Read_course_information()
+{
+    ifstream fin("course.txt");
+    if (!fin)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    string course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time;
+    while (fin >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time)
+    {
+        Insert_course_node(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
+    }
+    fin.close();
+}
+void course_list::Read_course_information_by_keyword(string keyword)
+{
+    ifstream fin("course.txt");
+    if (!fin)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    string course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time;
+    while (fin >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time)
+    {
+        if(course_id == keyword || course_name == keyword || course_grade == keyword || course_college == keyword || course_profession == keyword || course_college_open == keyword || course_type == keyword || course_nature == keyword || course_belong == keyword || course_week == keyword || course_time == keyword)
+        {
+            Insert_course_node(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
+        }
+    }
+    fin.close();
+}
+void course_list::Read_stu_course_information(string account)
+{
+    //打开stu_course文件夹下以学生账号命名的文件
+    ifstream fin("stu_course\\" + account + ".txt");
+    if (!fin)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    string course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time;
+    while (fin >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time)
+    {
+        Insert_course_node(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
+    }
+    fin.close();
+}
+void course_list::Read_tea_course_information(string account)
+{
+    //打开tea_course文件夹下以教师账号命名的文件
+    ifstream fin("tea_course\\" + account + ".txt");
+    if (!fin)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    string course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time;
+    while (fin >> course_id >> course_name >> course_grade >> course_college >> course_profession >> course_college_open >> course_type >> course_nature >> course_belong >> course_week >> course_time)
+    {
+        Insert_course_node(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
+    }
+    fin.close();
+}
+void course_list::Insert_course_node(string course_id, string course_name, string course_grade, string course_college, string course_profession, string course_college_open, string course_type, string course_nature, string course_belong, string course_week, string course_time)
+{
+    course_node* temp = new course_node(course_id, course_name, course_grade, course_college, course_profession, course_college_open, course_type, course_nature, course_belong, course_week, course_time);
+    if (head == NULL)
+    {
+        head = temp;
+        return;
+    }
+    course_node* temp1 = head;
+    course_node* temp2 = head;
+    while (temp1 != NULL)
+    {
+        if (temp1->Get_course_id() > temp->Get_course_id())
+        {
+            if (temp1 == head)
+            {
+                temp->Set_next(head);
+                head = temp;
+                return;
+            }
+            else
+            {
+                temp->Set_next(temp1);
+                temp2->Set_next(temp);
+                return;
+            }
+        }
+        temp2 = temp1;
+        temp1 = temp1->Get_next();
+    }
+    temp2->Set_next(temp);
+}
+void course_list::Insert_course_node(course_node* node)
+{
+    course_node* temp = new course_node(node->Get_course_id(), node->Get_course_name(), node->Get_course_grade(), node->Get_course_college(), node->Get_course_profession(), node->Get_course_college_open(), node->Get_course_type(), node->Get_course_nature(), node->Get_course_belong(), node->Get_course_week(), node->Get_course_time());
+    if (head == NULL)
+    {
+        head = temp;
+        return;
+    }
+    course_node* temp1 = head;
+    course_node* temp2 = head;
+    while (temp1 != NULL)
+    {
+        if (temp1->Get_course_id() > temp->Get_course_id())
+        {
+            if (temp1 == head)
+            {
+                temp->Set_next(head);
+                head = temp;
+                return;
+            }
+            else
+            {
+                temp->Set_next(temp1);
+                temp2->Set_next(temp);
+                return;
+            }
+        }
+        temp2 = temp1;
+        temp1 = temp1->Get_next();
+    }
+    temp2->Set_next(temp);
+}
+void course_list::Delete_course_node(string course_id)
+{
+    course_node* temp1 = head;
+    course_node* temp2 = head;
+    while (temp1 != NULL)
+    {
+        if (temp1->Get_course_id() == course_id)
+        {
+            if (temp1 == head)
+            {
+                head = temp1->Get_next();
+                delete temp1;
+                return;
+            }
+            else
+            {
+                temp2->Set_next(temp1->Get_next());
+                delete temp1;
+                return;
+            }
+        }
+        temp2 = temp1;
+        temp1 = temp1->Get_next();
+    }
+}
+course_node* course_list::Search_course_node(string course_id)
+{
+    course_node* temp = head;
+    while (temp != NULL)
+    {
+        if (temp->Get_course_id() == course_id)
+        {
+            return temp;
+        }
+        temp = temp->Get_next();
+    }
+    return NULL;
+}
+course_node* course_list::Search_course_node_by_keyword(string keyword)
+{
+    course_node* temp = head;
+    while (temp != NULL)
+    {
+        if (temp->Get_course_id() == keyword || temp->Get_course_name() == keyword || temp->Get_course_grade() == keyword || temp->Get_course_college() == keyword || temp->Get_course_profession() == keyword || temp->Get_course_college_open() == keyword || temp->Get_course_type() == keyword || temp->Get_course_nature() == keyword || temp->Get_course_belong() == keyword || temp->Get_course_week() == keyword || temp->Get_course_time() == keyword)
+        {
+            return temp;
+        }
+        temp = temp->Get_next();
+    }
+    return NULL;
+}
+void course_list::Write_course_information()
+{
+    //删除原文件
+    remove("course.txt");
+    //写入新文件
+    ofstream fout("course.txt");
+    if (!fout)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    course_node* temp = head;
+    while (temp != NULL)
+    {
+        fout << temp->Get_course_id() << " " << temp->Get_course_name() << " " << temp->Get_course_grade() << " " << temp->Get_course_college() << " " << temp->Get_course_profession() << " " << temp->Get_course_college_open() << " " << temp->Get_course_type() << " " << temp->Get_course_nature() << " " << temp->Get_course_belong() << " " << temp->Get_course_week() << " " << temp->Get_course_time() << endl;
+        temp = temp->Get_next();
+    }
+    fout.close();
+}
+void course_list::Write_stu_course_information(string account)
+{
+    //删除原文件
+    remove(("./stu_course/" + account + ".txt").c_str());
+    //写入新文件
+    ofstream fout("./stu_course/" + account + ".txt");
+    if (!fout)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    course_node* temp = head;
+    while (temp != NULL)
+    {
+        fout << temp->Get_course_id() << " " << temp->Get_course_name() << " " << temp->Get_course_grade() << " " << temp->Get_course_college() << " " << temp->Get_course_profession() << " " << temp->Get_course_college_open() << " " << temp->Get_course_type() << " " << temp->Get_course_nature() << " " << temp->Get_course_belong() << " " << temp->Get_course_week() << " " << temp->Get_course_time() << endl;
+        temp = temp->Get_next();
+    }
+    fout.close();
+}
+void course_list::Write_tea_course_information(string account)
+{
+    //删除原文件
+    remove(("./tea_course/" + account + ".txt").c_str());
+    //写入新文件
+    ofstream fout("./tea_course/" + account + ".txt");
+    if (!fout)
+    {
+        cout << "文件打开失败！" << endl;
+        exit(0);
+    }
+    course_node* temp = head;
+    while (temp != NULL)
+    {
+        fout << temp->Get_course_id() << " " << temp->Get_course_name() << " " << temp->Get_course_grade() << " " << temp->Get_course_college() << " " << temp->Get_course_profession() << " " << temp->Get_course_college_open() << " " << temp->Get_course_type() << " " << temp->Get_course_nature() << " " << temp->Get_course_belong() << " " << temp->Get_course_week() << " " << temp->Get_course_time() << endl;
+        temp = temp->Get_next();
+    }
+    fout.close();
+}
+
 //课程信息类
 //编号 名称 年级 学院 专业 开课学院 课程类别 课程性质 课程归属 上课星期 上课节次
 //功能函数定义
@@ -2138,98 +2385,101 @@ void stu_course::Show_course()
     Col(0); cout << endl;
     stu_course_file.close();
 }
-void stu_course::Show_next_course()
-{
-    //获取当前时间
-    time_t now_time = time(NULL);
-    //转换为本地时间
-    tm local_time;
-    localtime_s(&local_time, &now_time);
-    //string类型存储当前时间
-    string week;
-    string time;
-    if (local_time.tm_hour < 8)
-    {
-        time = "1和2";
-    }
-    else if (local_time.tm_hour < 10)
-    {
-        time = "3和4";
-    }
-    else if (local_time.tm_hour < 14)
-    {
-        time = "5和6";
-    }
-    else if (local_time.tm_hour < 16)
-    {
-        time = "7和8";
-    }
-    else if (local_time.tm_hour < 19)
-    {
-        time = "9和10和11";
-    }
-    else
-    {
-        Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
-        return;
-    }
-    switch (local_time.tm_wday)
-    {
-    case 0:
-        week = "星期日";
-        break;
-    case 1:
-        week = "星期一";
-        break;
-    case 2:
-        week = "星期二";
-        break;
-    case 3:
-        week = "星期三";
-        break;
-    case 4:
-        week = "星期四";
-        break;
-    case 5:
-        week = "星期五";
-        break;
-    case 6:
-        week = "星期六";
-        break;
-    }
-    //调用函数获得课程名字
-    string name = Get_course(week, time);
-    //输出下一节课的时间和名称
-    system("cls");
-    if (name != "")
-    {
-        Col(3); cout << "下一节课为:" << name << endl; Col(0);
-        Col(3); cout << "时间为:"; Col(0);
-        if (time == "1和2")
-        {
-            Col(3); cout << "8:00-9:40" << endl; Col(0);
-        }
-        else if (time == "3和4")
-        {
-            Col(3); cout << "10:00-11:40" << endl; Col(0);
-        }
-        else if (time == "5和6")
-        {
-            Col(3); cout << "14:00-15:40" << endl; Col(0);
-        }
-        else if (time == "7和8")
-        {
-            Col(3); cout << "16:00-17:40" << endl; Col(0);
-        }
-        else if (time == "9和10和11")
-        {
-            Col(3); cout << "19:00-21:35" << endl; Col(0);
-        }
-    }
-    else {
-        Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
-    }
-}
+// void stu_course::Show_next_course()
+// {
+//     //获取当前时间
+//     time_t now_time = time(NULL);
+//     //转换为本地时间
+//     tm local_time;
+//     localtime_s(&local_time, &now_time);
+//     //string类型存储当前时间
+//     string week;
+//     string time;
+//     if (local_time.tm_hour < 8)
+//     {
+//         time = "1和2";
+//     }
+//     else if (local_time.tm_hour < 10)
+//     {
+//         time = "3和4";
+//     }
+//     else if (local_time.tm_hour < 14)
+//     {
+//         time = "5和6";
+//     }
+//     else if (local_time.tm_hour < 16)
+//     {
+//         time = "7和8";
+//     }
+//     else if (local_time.tm_hour < 19)
+//     {
+//         time = "9和10和11";
+//     }
+//     else
+//     {
+//         Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
+//         return;
+//     }
+//     switch (local_time.tm_wday)
+//     {
+//     case 0:
+//         week = "星期日";
+//         break;
+//     case 1:
+//         week = "星期一";
+//         break;
+//     case 2:
+//         week = "星期二";
+//         break;
+//     case 3:
+//         week = "星期三";
+//         break;
+//     case 4:
+//         week = "星期四";
+//         break;
+//     case 5:
+//         week = "星期五";
+//         break;
+//     case 6:
+//         week = "星期六";
+//         break;
+//     }
+//     //调用函数获得课程名字
+//     string name = Get_course(week, time);
+//     //输出下一节课的时间和名称
+//     system("cls");
+//     if (name != "")
+//     {
+//         Col(3); cout << "下一节课为:" << name << endl; Col(0);
+//         Col(3); cout << "时间为:"; Col(0);
+//         if (time == "1和2")
+//         {
+//             Col(3); cout << "8:00-9:40" << endl; Col(0);
+//         }
+//         else if (time == "3和4")
+//         {
+//             Col(3); cout << "10:00-11:40" << endl; Col(0);
+//         }
+//         else if (time == "5和6")
+//         {
+//             Col(3); cout << "14:00-15:40" << endl; Col(0);
+//         }
+//         else if (time == "7和8")
+//         {
+//             Col(3); cout << "16:00-17:40" << endl; Col(0);
+//         }
+//         else if (time == "9和10和11")
+//         {
+//             Col(3); cout << "19:00-21:35" << endl; Col(0);
+//         }
+//     }
+//     else {
+//         Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
+//     }
+// }
+//教师授课信息派生类
+//函数定义
+
 //教师授课信息派生类
 //函数定义
 void tea_course::Get_course_week_time()
@@ -2592,98 +2842,98 @@ void tea_course::Show_tea_course()
     Col(0); cout << endl;
     tea_course_file.close();
 }
-void tea_course::Show_next_course()
-{
-    //获取当前时间
-    time_t now_time = time(NULL);
-    //转换为本地时间
-    tm local_time;
-    localtime_s(&local_time, &now_time);
-    //string类型存储当前时间
-    string week;
-    string time;
-    if (local_time.tm_hour < 8)
-    {
-        time = "1和2";
-    }
-    else if (local_time.tm_hour < 10)
-    {
-        time = "3和4";
-    }
-    else if (local_time.tm_hour < 14)
-    {
-        time = "5和6";
-    }
-    else if (local_time.tm_hour < 16)
-    {
-        time = "7和8";
-    }
-    else if (local_time.tm_hour < 19)
-    {
-        time = "9和10和11";
-    }
-    else
-    {
-        Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
-        return;
-    }
-    switch (local_time.tm_wday)
-    {
-    case 0:
-        week = "星期日";
-        break;
-    case 1:
-        week = "星期一";
-        break;
-    case 2:
-        week = "星期二";
-        break;
-    case 3:
-        week = "星期三";
-        break;
-    case 4:
-        week = "星期四";
-        break;
-    case 5:
-        week = "星期五";
-        break;
-    case 6:
-        week = "星期六";
-        break;
-    }
-    //调用函数获得课程名字
-    string name = Get_course(week, time);
-    //输出下一节课的时间和名称
-    system("cls");
-    if (name != "")
-    {
-        Col(3); cout << "下一节课为:" << name << endl; Col(0);
-        Col(3); cout << "时间为:"; Col(0);
-        if (time == "1和2")
-        {
-            Col(3); cout << "8:00-9:40" << endl; Col(0);
-        }
-        else if (time == "3和4")
-        {
-            Col(3); cout << "10:00-11:40" << endl; Col(0);
-        }
-        else if (time == "5和6")
-        {
-            Col(3); cout << "14:00-15:40" << endl; Col(0);
-        }
-        else if (time == "7和8")
-        {
-            Col(3); cout << "16:00-17:40" << endl; Col(0);
-        }
-        else if (time == "9和10和11")
-        {
-            Col(3); cout << "19:00-21:35" << endl; Col(0);
-        }
-    }
-    else {
-        Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
-    }
-}
+// void tea_course::Show_next_course()
+// {
+//     //获取当前时间
+//     time_t now_time = time(NULL);
+//     //转换为本地时间
+//     tm local_time;
+//     localtime_s(&local_time, &now_time);
+//     //string类型存储当前时间
+//     string week;
+//     string time;
+//     if (local_time.tm_hour < 8)
+//     {
+//         time = "1和2";
+//     }
+//     else if (local_time.tm_hour < 10)
+//     {
+//         time = "3和4";
+//     }
+//     else if (local_time.tm_hour < 14)
+//     {
+//         time = "5和6";
+//     }
+//     else if (local_time.tm_hour < 16)
+//     {
+//         time = "7和8";
+//     }
+//     else if (local_time.tm_hour < 19)
+//     {
+//         time = "9和10和11";
+//     }
+//     else
+//     {
+//         Col(3); cout << "今天已经没有课了，睡个好觉吧" << endl; Col(0);
+//         return;
+//     }
+//     switch (local_time.tm_wday)
+//     {
+//     case 0:
+//         week = "星期日";
+//         break;
+//     case 1:
+//         week = "星期一";
+//         break;
+//     case 2:
+//         week = "星期二";
+//         break;
+//     case 3:
+//         week = "星期三";
+//         break;
+//     case 4:
+//         week = "星期四";
+//         break;
+//     case 5:
+//         week = "星期五";
+//         break;
+//     case 6:
+//         week = "星期六";
+//         break;
+//     }
+//     //调用函数获得课程名字
+//     string name = Get_course(week, time);
+//     //输出下一节课的时间和名称
+//     system("cls");
+//     if (name != "")
+//     {
+//         Col(3); cout << "下一节课为:" << name << endl; Col(0);
+//         Col(3); cout << "时间为:"; Col(0);
+//         if (time == "1和2")
+//         {
+//             Col(3); cout << "8:00-9:40" << endl; Col(0);
+//         }
+//         else if (time == "3和4")
+//         {
+//             Col(3); cout << "10:00-11:40" << endl; Col(0);
+//         }
+//         else if (time == "5和6")
+//         {
+//             Col(3); cout << "14:00-15:40" << endl; Col(0);
+//         }
+//         else if (time == "7和8")
+//         {
+//             Col(3); cout << "16:00-17:40" << endl; Col(0);
+//         }
+//         else if (time == "9和10和11")
+//         {
+//             Col(3); cout << "19:00-21:35" << endl; Col(0);
+//         }
+//     }
+//     else {
+//         Col(3); cout << "先休息100分钟再来看下一节课吧" << endl; Col(0);
+//     }
+// }
 
 //学生派生类
 //学号（账号） 密码 姓名 年级 学院 专业 班级
@@ -2854,14 +3104,248 @@ void student::Show_course()
     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
-void student::Show_next_course()
+void student::one_click_choose_course()
 {
-    //创建一个临时对象用于显示下一节课的时间和名称
-    stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
-    stu_course_temp.Show_next_course();
-    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
-    system("pause");
+    if(stu_isoneclick==false)
+    {
+    //判断stu_course文件夹是否已经创建
+    fstream test1("./stu_course/test.txt", ios::out);
+    if (!test1)
+    {
+        CreateDirectory(_T("./stu_course"), NULL);
+    }
+    else {
+        test1.close();
+        remove("./stu_course/test.txt");
+    }
+    //打开stu_course文件夹下的以学号为命名的选课情况文件
+    fstream stu_course_file("./stu_course/" + account + ".txt", ios::in | ios::out | ios::app);
+    if (!stu_course_file)
+    {
+        //如果文件不存在则新建文件
+        stu_course_file.open("./stu_course/" + account + ".txt", ios::out);
+        stu_course_file.close();
+        stu_course_file.open("./stu_course/" + account + ".txt", ios::in | ios::out | ios::app);
+        if (!stu_course_file)
+        {
+            cout << "文件打开失败" << endl;
+            exit(1);
+        }
+    }
+    //从course.txt文件中读取课程信息到链表
+    course_list stu_course_list;
+    stu_course_list.Read_course_information();
+    //遍历链表，根据专业和年级一键选课
+    course_node* p = stu_course_list.head->Get_next();
+    while (p != NULL)
+    {
+        if (p->Get_course_profession() == this->stu_profession && p->Get_course_grade() == this->stu_grade)
+        {
+            //写入学生选课txt文件
+            stu_course_file << p->Get_course_id() << " " << p->Get_course_name() << " " << p->Get_course_grade() << " " << p->Get_course_college() << " " << p->Get_course_profession() << " " << p->Get_course_college_open() << " " << p->Get_course_type() << " " << p->Get_course_nature() << " " << p->Get_course_belong() << " " << p->Get_course_week() << " " << p->Get_course_time() << endl;
+            //判断course_student_list文件夹是否已经创建
+            fstream test2("./course_student_list/test.txt", ios::out);
+            if (!test2)
+            {
+                CreateDirectory(_T("./course_student_list"), NULL);
+            }
+            else {
+                test2.close();
+                remove("./course_student_list/test.txt");
+            }
+            //向course_student_list文件夹下的课程学生名单中写入学号
+            //打开文件
+            fstream course_student_list_file("./course_student_list/" + p->Get_course_id() + ".txt", ios::out | ios::app);
+            if (!course_student_list_file)
+            {
+                cout << "文件打开失败" << endl;
+                exit(1);
+            }
+            //写入学号
+            course_student_list_file << account << endl;
+            course_student_list_file.close();
+        }
+        p = p->Get_next();
+    }
+    stu_course_file.close();
+    //判断course_student_list文件夹是否已经创建
+    fstream test2("./course_student_list/test.txt", ios::out);
+    if (!test2)
+    {
+        CreateDirectory(_T("./course_student_list"), NULL);
+    }
+    else {
+        test2.close();
+        remove("./course_student_list/test.txt");
+    }
+    system("cls");
+    Col(3); cout << "一键选课成功" << endl; Col(0);
+    }
+    else
+    {
+        system("cls");
+        Col(3); cout << "一键选课失败，您已经一键选课过了" << endl; Col(0);
+    }
+    Sleep(1000);
 }
+void student::Drop_course_new()
+{
+    //从stu_course文件夹下的以学号为命名的选课情况文件中读取课程信息到链表
+    course_list stu_course_list;
+    stu_course_list.Read_stu_course_information(this->account);
+    //遍历一遍链表的节点个数
+    int num = 0;
+    course_node* p = stu_course_list.head;
+    while (p != NULL)
+    {
+        num++;
+        p = p->Get_next();
+    }
+    //所有已选课程的名字和编号
+    string* course_name = new string[num];
+    string* course_id = new string[num];
+    //遍历链表，将课程名字存入course_name中
+    p = stu_course_list.head;
+    int i = 0;
+    while (p != NULL)
+    {
+        course_name[i] = p->Get_course_name();
+        i++;
+        p = p->Get_next();
+    }
+    //遍历链表，将课程编号存入course_id中
+    p = stu_course_list.head;
+    i = 0;
+    while (p != NULL)
+    {
+        course_id[i] = p->Get_course_id();
+        i++;
+        p = p->Get_next();
+    }
+    //number记录退课的门数
+    int number{0};
+    //course_id2数组存储被退课的课程编号
+    string* course_id2 = new string[num - 1];
+    //显示退课菜单
+    List temp_list(num+1);
+    while (true)
+    {
+        while (true)
+        {
+            system("cls");
+            Col(3); cout <<"选中想要退课的课程后按下Enter键" << endl; Col(0);
+            for(int i = 0; i < num; i++)
+            {
+                if(i == temp_list.GetListSelection() - 1)
+                {
+                    Col(7); cout << left << setw(10) << course_id[i] << left << setw(20) << course_name[i] << endl; Col(0);
+                }
+                else
+                {
+                    Col(3); cout << left << setw(10) << course_id[i]; 
+                    Col(6);cout << left << setw(20) << course_name[i] << endl; Col(0);
+                }
+            }
+            if(temp_list.GetListSelection() == num + 1)
+            {
+                Col(7); cout << "结束退课" << endl; Col(0);
+            }else{
+                Col(3); cout << "结束退课" << endl; Col(0);
+                }
+            temp_list.Deal_input();
+            if (temp_list.GetBreakword())
+            {
+                temp_list.SetBreakword(0);
+                break;
+            }
+        }
+        if(temp_list.GetListSelection() == num + 1)
+        {
+            break;
+        }
+        //course_id2数组存储被退课的课程编号
+        course_id2[number] = course_id[temp_list.GetListSelection() - 1];
+        ++number;
+        //链表删除对应选课
+        string temp_course_id = course_id[temp_list.GetListSelection() - 1];
+        stu_course_list.Delete_course_node(temp_course_id);
+        --num;
+        //course_name和course_id数组删除对应选课并重新分配内存
+        string* course_name1 = new string[num];
+        string* course_id1 = new string[num];
+        for (int i = 0; i < temp_list.GetListSelection() - 1; i++)
+        {
+            course_name1[i] = course_name[i];
+            course_id1[i] = course_id[i];
+        }
+        for (int i = temp_list.GetListSelection() - 1; i < num; i++)
+        {
+            course_name1[i] = course_name[i + 1];
+            course_id1[i] = course_id[i + 1];
+        }
+        delete[] course_name;
+        delete[] course_id;
+        course_name = course_name1;
+        course_id = course_id1;
+    }
+    //将链表中的课程信息写入stu_course文件夹下的以学号为命名的选课情况文件中
+    stu_course_list.Write_stu_course_information(this->account);
+    //判断course_student_list文件夹是否已经创建
+    fstream test2("./course_student_list/test.txt", ios::out);
+    if (!test2)
+    {
+        CreateDirectory(_T("./course_student_list"), NULL);
+    }
+    else {
+        test2.close();
+        remove("./course_student_list/test.txt");
+    }
+    //删除course_student_list文件夹下的课程学生名单中的学号
+    //打开文件
+    for(int i{0};i<number;i++)
+    {
+        fstream course_student_list_file("./course_student_list/" + course_id2[i] + ".txt", ios::in);
+        if (!course_student_list_file)
+        {
+            cout << "文件打开失败" << endl;
+            exit(1);
+        }
+        //新建一个temp文本用于临时保存数据
+        fstream course_student_list_temp_file("./course_student_list/" + course_id2[i] + "_temp.txt", ios::out);
+        if (!course_student_list_temp_file)
+        {
+            cout << "临时文件创建失败" << endl;
+            exit(1);
+        }
+        //定位到该课程并向course_student_list_temp.txt中持续写入数据,跳过写入该学号数据
+        string temp_stu_account;
+        while (course_student_list_file >> temp_stu_account)
+        {
+            if (temp_stu_account != account)
+            {
+                course_student_list_temp_file << temp_stu_account << endl;
+            }
+        }
+        course_student_list_file.close();
+        course_student_list_temp_file.close();
+        //删除原文件
+        remove(("./course_student_list/" + course_id2[i] + ".txt").c_str());
+        //重命名文件
+        rename(("./course_student_list/" + course_id2[i] + "_temp.txt").c_str(), ("./course_student_list/" + course_id2[i] + ".txt").c_str());
+    }
+}
+// void student::Show_next_course()
+// {
+//     //创建一个临时对象用于显示下一节课的时间和名称
+//     stu_course stu_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
+//     stu_course_temp.Show_next_course();
+//     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
+//     system("pause");
+// }
+//教师派生类
+//工号（账号） 密码 姓名 学院
+//函数定义
+
 //教师派生类
 //工号（账号） 密码 姓名 学院
 //函数定义
@@ -2948,7 +3432,8 @@ string teacher::Get_stu_name(string stu_account)
     //定位到该学生
     string account;
     string name;
-    while (stu_file >> account >> name)
+    string temp;
+    while (stu_file >> account >> temp >> name)
     {
         if (account == stu_account)
         {
@@ -3030,6 +3515,18 @@ void teacher::Course_search()
     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
+void teacher::Choose_course()
+{
+    //创建一个临时对象用于添加课程
+    tea_course tea_course_temp("","","","","","","","","","","",account,"","","");
+    tea_course_temp.Add_tea_course();
+}
+void teacher::Drop_course()
+{
+    //创建一个临时对象用于删除课程
+    tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
+    tea_course_temp.Delete_tea_course();
+}
 void teacher::Show_course()
 {
     //创建一个临时对象用于显示课表
@@ -3081,14 +3578,18 @@ void teacher::Show_stu_list()
     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
     system("pause");
 }
-void teacher::Show_next_course()
-{
-    //创建一个临时对象用于显示下一节课的时间和名称
-    tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
-    tea_course_temp.Show_next_course();
-    Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
-    system("pause");
-}
+// void teacher::Show_next_course()
+// {
+//     //创建一个临时对象用于显示下一节课的时间和名称
+//     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", account, "", "", "");
+//     tea_course_temp.Show_next_course();
+//     Col(3); cout << endl << endl << endl << "按下任意键返回上一菜单..." << endl; Col(0);
+//     system("pause");
+// }
+//管理员派生类
+//账号 密码 姓名
+//函数定义
+
 //管理员派生类
 //账号 密码 姓名
 //函数定义
@@ -3162,14 +3663,6 @@ bool admin::Login()
         Sleep(1000);
         return false;
     }
-}
-void admin::access_private_tea_course(tea_course& tea_course_temp)
-{
-    tea_course_temp.Add_tea_course();
-}
-void admin::access_private_tea_course1(tea_course& tea_course_temp)
-{
-    tea_course_temp.Delete_tea_course();
 }
 bool admin::Is_stu_exist(string stu_account)
 {
@@ -4298,7 +4791,7 @@ void admin::Add_tea_course()
     }
     //创建一个临时对象用于添加课程
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
-    access_private_tea_course(tea_course_temp);
+    tea_course_temp.Add_tea_course();
 }
 void admin::Delete_tea_course()
 {
@@ -4315,7 +4808,7 @@ void admin::Delete_tea_course()
     }
     //创建一个临时对象用于删除课程
     tea_course tea_course_temp("", "", "", "", "", "", "", "", "", "", "", temp_accountORcourseid_class, "", "", "");
-    access_private_tea_course1(tea_course_temp);
+    tea_course_temp.Delete_tea_course();
 }
 void admin::Search_course_tea_stu_information()
 {

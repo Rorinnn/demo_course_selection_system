@@ -79,7 +79,7 @@ void main_menu_work(int Option_selection)
 //学生菜单
 void stu_menu()
 {
-	List stu_menu_list(8);
+	List stu_menu_list(10);
 	system("cls");
 	Col(3); cout << "请输入您的账号:" << endl; Col(0);
 	string account;
@@ -110,16 +110,22 @@ void stu_menu()
 				cout << "                 4.选课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (stu_menu_list.GetListSelection() == 5) Col(7);
 				else Col(6);
-				cout << "                 5.退课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "            5.选课（链表版）          "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (stu_menu_list.GetListSelection() == 6) Col(7);
 				else Col(6);
-				cout << "               6.显示课表             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "                 6.退课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (stu_menu_list.GetListSelection() == 7) Col(7);
 				else Col(6);
-				cout << "               7.下一节课             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "             7.退课（链表版）         "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (stu_menu_list.GetListSelection() == 8) Col(7);
 				else Col(6);
-				cout << "               8.返回主页             "; Col(3); cout << "  "; Col(0); cout << endl;
+				cout << "               8.显示课表             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				if (stu_menu_list.GetListSelection() == 9) Col(7);
+				else Col(6);
+				cout << "               9.一键选课             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				if (stu_menu_list.GetListSelection() == 10) Col(7);
+				else Col(6);
+				cout << "               10.返回主页            "; Col(3); cout << "  "; Col(0); cout << endl;
 				Col(3); cout << "                                          " << endl; Col(0);
 				stu_menu_list.Deal_input();
 				if (stu_menu_list.GetBreakword())
@@ -134,10 +140,13 @@ void stu_menu()
 				case 2: {stu.Show_stu_information(); break; }
 				case 3: {stu.Course_search(); break; }
 				case 4: {stu.Choose_course(); break; }
-				case 5: {stu.Drop_course(); break; }
-				case 6: {stu.Show_course(); break; }
-				case 7: {stu.Show_next_course(); break; }
-				case 8: {stu_menu_list.SetBreakword(1); break; }
+				//case 5: {stu.Choose_course_new(); break; }
+				case 5: {maintenance();break;}
+				case 6: {stu.Drop_course(); break; }
+				case 7: {stu.Drop_course_new(); break; }
+				case 8: {stu.Show_course(); break; }
+				case 9: {stu.one_click_choose_course(); break; }
+				case 10: {stu_menu_list.SetBreakword(1); break; }
 			}
 			if (stu_menu_list.GetBreakword())
 			{
@@ -151,7 +160,7 @@ void stu_menu()
 //教师菜单
 void tea_menu()
 {
-	List tea_menu_list(7);
+	List tea_menu_list(8);
 	system("cls");
 	Col(3); cout << "请输入您的账号:" << endl; Col(0);
 	string account;
@@ -179,16 +188,19 @@ void tea_menu()
 				cout << "             3.查询课程信息             "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (tea_menu_list.GetListSelection() == 4) Col(7);
 				else Col(6);
-				cout << "               4.显示课表               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "               4.添加授课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (tea_menu_list.GetListSelection() == 5) Col(7);
 				else Col(6);
-				cout << "         5.显示所教课程的学生名单       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "               5.删除授课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (tea_menu_list.GetListSelection() == 6) Col(7);
 				else Col(6);
-				cout << "               6.下一节课               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				cout << "               6.显示课表               "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
 				if (tea_menu_list.GetListSelection() == 7) Col(7);
 				else Col(6);
-				cout << "               7.返回主页               "; Col(3); cout << "  "; Col(0); cout << endl;
+				cout << "         7.显示所教课程的学生名单       "; Col(3); cout << "  "; Col(0); cout << endl; Col(3); cout << "  ";
+				if (tea_menu_list.GetListSelection() == 8) Col(7);
+				else Col(6);
+				cout << "               8.返回主页               "; Col(3); cout << "  "; Col(0); cout << endl;
 				Col(3); cout << "                                            " << endl; Col(0);
 				tea_menu_list.Deal_input();
 				if (tea_menu_list.GetBreakword())
@@ -202,10 +214,11 @@ void tea_menu()
 			case 1: {tea.Change_password(); break; }
 			case 2: {tea.Show_tea_information(); break; }
 			case 3: {tea.Course_search(); break; }
-			case 4: {tea.Show_course(); break; }
-			case 5: {tea.Show_stu_list(); break; }
-			case 6: {tea.Show_next_course(); break; }
-			case 7: {tea_menu_list.SetBreakword(1); break; }
+			case 4: {tea.Choose_course(); break; }
+			case 5: {tea.Drop_course(); break; }
+			case 6: {tea.Show_course(); break; }
+			case 7: {tea.Show_stu_list(); break; }
+			case 8: {tea_menu_list.SetBreakword(1); break; }
 			}
 			if (tea_menu_list.GetBreakword())
 			{
